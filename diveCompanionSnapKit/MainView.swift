@@ -23,7 +23,7 @@ class MainView: UIView {
     
     lazy private var siteImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -199,7 +199,7 @@ class MainView: UIView {
     private func descriptionSetup() {
         siteDescriptionLabel.snp.makeConstraints {
             $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
-           // $0.trailing.equalTo(snp.trailing).inset(-40)
+            //$0.trailing.equalTo(safeAreaLayoutGuide).inset(-8)
             $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-15)
             $0.width.equalTo(snp.width).inset(30)
         }
