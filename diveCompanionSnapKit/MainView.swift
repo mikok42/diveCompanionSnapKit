@@ -184,23 +184,22 @@ class MainView: UIView {
     
     private func titleSetup() {
         siteTitleLabel.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
-            $0.topMargin.equalTo(siteImageView.snp_bottomMargin).inset(-20)
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
+            $0.topMargin.equalTo(siteImageView.snp_bottomMargin).inset(-Constants.labelsDistance)
         }
     }
     
     private func locationSetup() {
         siteLocationLabel.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
-            $0.topMargin.equalTo(siteTitleLabel.snp_bottomMargin).inset(-15)
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
+            $0.topMargin.equalTo(siteTitleLabel.snp_bottomMargin).inset(-Constants.labelsDistance)
         }
     }
     
     private func descriptionSetup() {
         siteDescriptionLabel.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
-            //$0.trailing.equalTo(safeAreaLayoutGuide).inset(-8)
-            $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-15)
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
+            $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-Constants.labelsDistance)
             $0.width.equalTo(snp.width).inset(30)
         }
     }

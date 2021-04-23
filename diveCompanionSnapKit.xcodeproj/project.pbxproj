@@ -18,6 +18,7 @@
 		D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A02631C81900577F91 /* JsonParser.swift */; };
 		D01AD5A42631C81900577F91 /* diveSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A12631C81900577F91 /* diveSite.swift */; };
 		D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5D42631FF1A00577F91 /* MainView.swift */; };
+		D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CD4FBB2633452800CFF221 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D01AD5A02631C81900577F91 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		D01AD5A12631C81900577F91 /* diveSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diveSite.swift; sourceTree = "<group>"; };
 		D01AD5D42631FF1A00577F91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D0CD4FBB2633452800CFF221 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveCompanionSnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				D01AD59F2631C81900577F91 /* DataParserError.swift */,
+				D0CD4FBB2633452800CFF221 /* Constants.swift */,
 				D01AD5A12631C81900577F91 /* diveSite.swift */,
 				D01AD5A02631C81900577F91 /* JsonParser.swift */,
 				D01AD57E2631902200577F91 /* AppDelegate.swift */,
@@ -224,6 +227,7 @@
 				D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */,
 				D01AD5A42631C81900577F91 /* diveSite.swift in Sources */,
 				D01AD5812631902200577F91 /* SceneDelegate.swift in Sources */,
+				D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
