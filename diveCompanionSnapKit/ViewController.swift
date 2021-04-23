@@ -13,24 +13,24 @@ class ViewController: UIViewController {
     
     @IBOutlet var MainView: MainView!
     
-    lazy private var siteImageView: UIImageView = {
+     lazy private var siteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        subviewsArray.append(imageView)
+        //subviewsArray.append(imageView)
         return imageView
     }()
     
     lazy private var siteTitleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont(name: "Avenir Next Bold", size: 21)
-        subviewsArray.append(titleLabel)
+        //subviewsArray.append(titleLabel)
         return titleLabel
     }()
     
     lazy private var siteLocationLabel: UILabel = {
         let locationLabel = UILabel()
         locationLabel.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
-        subviewsArray.append(locationLabel)
+        //subviewsArray.append(locationLabel)
         return locationLabel
     }()
     
@@ -39,13 +39,13 @@ class ViewController: UIViewController {
         descriptionLabel.font = UIFont(name: "Avenir Next Regular", size: 16)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        subviewsArray.append(descriptionLabel)
+        //subviewsArray.append(descriptionLabel)
         return descriptionLabel
     }()
     
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
-    var subviewsArray: [UIView] = []
+    //var subviewsArray: [UIView] = []
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
     
@@ -66,9 +66,8 @@ class ViewController: UIViewController {
                 let tempdiveSites: [DiveSite] = try parser.parse(jsonData: data)
                 diveSites = tempdiveSites
                 DispatchQueue.main.async {
-                    
+                    assignElements()
                 }
-                assignElements()
             } catch {
                 print(error)
             }
@@ -76,9 +75,13 @@ class ViewController: UIViewController {
     }
     
     private func addSubviews() {
-        subviewsArray.forEach {
-            self.view.addSubview($0)
-        }
+//        subviewsArray.forEach {
+//            self.view.addSubview($0)
+//        }
+        view.addSubview(siteImageView)
+        view.addSubview(siteDescriptionLabel)
+        view.addSubview(siteLocationLabel)
+        view.addSubview(siteTitleLabel)
     }
     
     private func layoutSubviews() {
