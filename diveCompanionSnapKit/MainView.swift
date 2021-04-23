@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
+protocol ButtonDelegate {
+    func buttonPressed(_ sender: UIButton)
+}
+
 class MainView: UIView {
+    var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
     lazy private var buttonStackView: UIStackView = {
@@ -29,19 +34,19 @@ class MainView: UIView {
     
     lazy private var siteTitleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: "Avenir Next Bold", size: 21)
+        titleLabel.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
         return titleLabel
     }()
     
     lazy private var siteLocationLabel: UILabel = {
         let locationLabel = UILabel()
-        locationLabel.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
+        locationLabel.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
         return locationLabel
     }()
     
     lazy private var siteDescriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont(name: "Avenir Next Regular", size: 16)
+        descriptionLabel.font = UIFont(name: Constants.fontName, size: 16)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return descriptionLabel
@@ -105,14 +110,17 @@ class MainView: UIView {
     
     @objc private func nextButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
+        buttonDelegate?.buttonPressed(sender)
     }
     
     @objc private func prevButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
+        buttonDelegate?.buttonPressed(sender)
     }
    
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
+        buttonDelegate?.buttonPressed(sender)
     }
     
     // MARK: Private funcs
@@ -194,6 +202,7 @@ class MainView: UIView {
             $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
             $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-Constants.labelsDistance)
             $0.width.equalTo(snp.width).inset(30)
+            $0.bottomMargin.lessThanOrEqualTo(buttonStackView.snp_topMargin).inset(Constants.labelsDistance)
         }
     }
 }
