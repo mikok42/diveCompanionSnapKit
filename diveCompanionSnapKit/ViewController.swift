@@ -11,75 +11,15 @@ import SwiftUI
 
 class ViewController: UIViewController {
     
-    @IBOutlet var MainView: MainView!
-    
-     lazy private var siteImageView: UIImageView = {
-        let imageView = UIImageView()
-        //imageView.contentMode = .scaleAspectFill
-        //subviewsArray.append(imageView)
-        return imageView
-    }()
-    
-    lazy private var prevButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("⬅️", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        return button
-    }()
-    
-    lazy private var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("➡️", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        return button
-    }()
-    
-    lazy private var homeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("🏠", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        return button
-    }()
-    
-    lazy private var siteTitleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: "Avenir Next Bold", size: 21)
-        //subviewsArray.append(titleLabel)
-        return titleLabel
-    }()
-    
-    lazy private var siteLocationLabel: UILabel = {
-        let locationLabel = UILabel()
-        locationLabel.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
-        //subviewsArray.append(locationLabel)
-        return locationLabel
-    }()
-    
-    lazy private var siteDescriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont(name: "Avenir Next Regular", size: 16)
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        //subviewsArray.append(descriptionLabel)
-        return descriptionLabel
-    }()
+    @IBOutlet var mainView: MainView!
     
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
-    //var subviewsArray: [UIView] = []
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addSubviews()
-        layoutSubviews()
         
         parser.readFromURL(fromURL: url) { [self] (data) in
             do {
@@ -87,7 +27,7 @@ class ViewController: UIViewController {
                 let tempdiveSites: [DiveSite] = try parser.parse(jsonData: data)
                 diveSites = tempdiveSites
                 DispatchQueue.main.async {
-                    assignElements()
+                    self.assignElements()
                 }
             } catch {
                 print(error)
@@ -95,56 +35,13 @@ class ViewController: UIViewController {
         }
     }
     
-    private func addSubviews() {
-//        subviewsArray.forEach {
-//            self.view.addSubview($0)
-//        }
-        view.addSubview(siteImageView)
-        view.addSubview(siteDescriptionLabel)
-        view.addSubview(siteLocationLabel)
-        view.addSubview(siteTitleLabel)
-    }
-    
-    private func layoutSubviews() {
-        imageSetup()
-        descriptionSetup()
-        locationSetup()
-        titleSetup()
-    }
-    
     private func assignElements() {
-        siteImageView.image = UIImage(named: diveSites[siteArrayIterator].pictureName)
-        siteTitleLabel.text = diveSites[siteArrayIterator].name
-        siteLocationLabel.text = diveSites[siteArrayIterator].location
-        siteDescriptionLabel.text = diveSites[siteArrayIterator].description
-    }
-    
-    private func imageSetup() {
-        siteImageView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.leading.equalTo(view.snp.leading)
-            $0.trailing.equalTo(view.snp.trailing)
-            $0.height.lessThanOrEqualTo(view.snp.height).dividedBy(3)
-        }
-    }
-    
-    private func titleSetup() {
-        siteTitleLabel.snp.makeConstraints {
-            $0.topMargin.equalTo(310)
-        }
-    }
-    
-    private func locationSetup() {
-        siteLocationLabel.snp.makeConstraints {
-            $0.topMargin.equalTo(340)
-        }
-    }
-    
-    private func descriptionSetup() {
-        siteDescriptionLabel.snp.makeConstraints {
-            $0.topMargin.equalTo(370)
-            $0.width.equalTo(UIScreen.main.bounds.width - 50)
-        }
+        let image =  diveSites[siteArrayIterator].pictureName
+        let title = diveSites[siteArrayIterator].name
+        let location = diveSites[siteArrayIterator].location
+        let description = diveSites[siteArrayIterator].description
+        
+        mainView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
     }
 }
 
@@ -153,4 +50,4 @@ class ViewController: UIViewController {
 //add i layout
 //main view
 //cykl życia view controllera
-
+//delegate

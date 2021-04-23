@@ -19,7 +19,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="MainView" destination="8bC-Xf-vdC" id="fgN-9b-qSF"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="fgN-9b-qSF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
