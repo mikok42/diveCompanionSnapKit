@@ -24,21 +24,18 @@ class MainView: UIView {
     lazy private var siteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     lazy private var siteTitleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont(name: "Avenir Next Bold", size: 21)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }()
     
     lazy private var siteLocationLabel: UILabel = {
         let locationLabel = UILabel()
         locationLabel.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
-        locationLabel.translatesAutoresizingMaskIntoConstraints = false
         return locationLabel
     }()
     
@@ -47,7 +44,6 @@ class MainView: UIView {
         descriptionLabel.font = UIFont(name: "Avenir Next Regular", size: 16)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return descriptionLabel
     }()
     
@@ -59,7 +55,6 @@ class MainView: UIView {
         button.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -71,7 +66,6 @@ class MainView: UIView {
         button.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -83,7 +77,6 @@ class MainView: UIView {
         button.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
