@@ -11,79 +11,122 @@ import SwiftUI
 
 class ViewController: UIViewController {
     
-    var siteImage = UIImageView()
-    var siteTitle = UILabel()
-    var siteLocation = UILabel()
-    var siteDescription = UILabel()
+    @IBOutlet var MainView: MainView!
+    
+    lazy private var siteImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        subviewsArray.append(imageView)
+        return imageView
+    }()
+    
+    lazy private var siteTitleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont(name: "Avenir Next Bold", size: 21)
+        subviewsArray.append(titleLabel)
+        return titleLabel
+    }()
+    
+    lazy private var siteLocationLabel: UILabel = {
+        let locationLabel = UILabel()
+        locationLabel.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
+        subviewsArray.append(locationLabel)
+        return locationLabel
+    }()
+    
+    lazy private var siteDescriptionLabel: UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.font = UIFont(name: "Avenir Next Regular", size: 16)
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        subviewsArray.append(descriptionLabel)
+        return descriptionLabel
+    }()
     
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
+    var subviewsArray: [UIView] = []
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
     
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addSubviews()
+        layoutSubviews()
+        
         parser.readFromURL(fromURL: url) { [self] (data) in
             do {
                 guard let data = data else { return }
                 let tempdiveSites: [DiveSite] = try parser.parse(jsonData: data)
                 diveSites = tempdiveSites
-                DispatchQueue.main.async {
-                    SnapKitLayout()
-                }
+//                DispatchQueue.main.async {
+//                    
+//                }
+                assignElements()
             } catch {
                 print(error)
             }
         }
-        //SnapKitLayout()
     }
     
-    private func SnapKitLayout() {
+    private func addSubviews() {
+        subviewsArray.forEach {
+            view.addSubview($0)
+        }
+    }
+    
+    private func layoutSubviews() {
         imageSetup()
         descriptionSetup()
         locationSetup()
         titleSetup()
     }
     
+    private func assignElements() {
+        siteImageView.image = UIImage(named: diveSites[siteArrayIterator].pictureName)
+        siteTitleLabel.text = diveSites[siteArrayIterator].name
+        siteLocationLabel.text = diveSites[siteArrayIterator].location
+        siteDescriptionLabel.text = diveSites[siteArrayIterator].description
+    }
+    
     private func imageSetup() {
-        siteImage.snp.makeConstraints { (img) in
-            img.height.equalTo(298.66)
-            img.width.equalTo(UIScreen.main.bounds.width)
+        siteImageView.snp.makeConstraints { img in
+            img.height.equalTo(view.snp.height).dividedBy(3)
+            img.width.equalTo(view.bounds.width)
             img.centerX.equalTo(view.center)
-            img.top.equalTo(view.snp_topMargin)
-            self.view.addSubview(siteImage)
+            img.top.equalTo(view.snp.top)
         }
-        siteImage.image = UIImage(named: diveSites[siteArrayIterator].pictureName)
     }
-    private func titleSetup(){
-        siteTitle.font = UIFont(name: "Avenir Next Bold", size: 21)
-            siteTitle.snp.makeConstraints { (title) in
-            title.topMargin.equalTo(310)
-            self.view.addSubview(siteTitle)
+    
+    private func titleSetup() {
+        siteTitleLabel.snp.makeConstraints {
+            $0.topMargin.equalTo(310)
         }
-        siteTitle.text =  diveSites[siteArrayIterator].name
     }
+    
     private func locationSetup() {
-        siteLocation.font = UIFont(name: "Avenir Next Ultra Light", size: 17)
-        siteLocation.snp.makeConstraints { (loc) in
-            loc.topMargin.equalTo(340)
-            self.view.addSubview(siteLocation)
+        siteLocationLabel.snp.makeConstraints {
+            $0.topMargin.equalTo(340)
         }
-        siteLocation.text =  diveSites[siteArrayIterator].location
     }
     
     private func descriptionSetup() {
-        siteDescription.font = UIFont(name: "Avenir Next Regular", size: 16)
-        siteDescription.textAlignment = NSTextAlignment.natural
-        siteDescription.lineBreakMode = NSLineBreakMode.byWordWrapping
-        siteDescription.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        siteDescription.snp.makeConstraints { (desc) in
-            desc.topMargin.equalTo(370)
-            desc.width.equalTo(UIScreen.main.bounds.width - 50)
-            self.view.addSubview(siteDescription)
+        siteDescriptionLabel.snp.makeConstraints {
+            $0.topMargin.equalTo(370)
+            $0.width.equalTo(UIScreen.main.bounds.width - 50)
         }
-        siteDescription.text =  diveSites[siteArrayIterator].description
     }
 }
+
+//$0,najpierw setup
+//buttony
+//add i layout
+//main view
+//cykl życia view controllera
 
