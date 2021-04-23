@@ -57,7 +57,8 @@ class MainView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.backgroundColor = UIColor.init(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
         button.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(prevButtonTouched), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -68,7 +69,8 @@ class MainView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.backgroundColor = UIColor(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
         button.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(nextButtonTouched), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -79,7 +81,8 @@ class MainView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.backgroundColor = UIColor(red: 254.0/255.0, green: 220.0/255.0, blue: 183.0/255.0, alpha: 1)
         button.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(homeButtonTouched), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -98,12 +101,12 @@ class MainView: UIView {
         siteDescriptionLabel.text = siteDescription
     }
     
-    @objc func prevButtonLetGo(_ sender: UIButton)
-    {
+    // MARK: Buttons
+    @objc func buttonLetGoOutside(_ sender: UIButton) {
         sender.alpha = 1
     }
     
-    @objc func prevButtonTouched(_ sender: UIButton) {
+    @objc func buttonTouched(_ sender: UIButton) {
         sender.alpha = 0.5
     }
     
@@ -111,16 +114,12 @@ class MainView: UIView {
         sender.alpha = 1
     }
     
-    @objc func nextButtonTouched(_ sender: UIButton) {
-        sender.alpha = 0.5
-    }
-    
-    @objc func homeButtonLetGo(_ sender: UIButton) {
+    @objc func prevButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
     }
-    
-    @objc func homeButtonTouched(_ sender: UIButton) {
-        sender.alpha = 0.5
+   
+    @objc func homeButtonLetGo(_ sender: UIButton) {
+        sender.alpha = 1
     }
     
     // MARK: Private funcs
@@ -185,21 +184,21 @@ class MainView: UIView {
     
     private func titleSetup() {
         siteTitleLabel.snp.makeConstraints {
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
             $0.topMargin.equalTo(siteImageView.snp_bottomMargin).inset(-20)
-            $0.leading.equalTo(snp.leading).inset(8)
         }
     }
     
     private func locationSetup() {
         siteLocationLabel.snp.makeConstraints {
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
             $0.topMargin.equalTo(siteTitleLabel.snp_bottomMargin).inset(-15)
-            $0.leading.equalTo(snp.leading).inset(8)
         }
     }
     
     private func descriptionSetup() {
         siteDescriptionLabel.snp.makeConstraints {
-            $0.leading.equalTo(snp.leading).inset(8)
+            $0.leading.equalTo(safeAreaLayoutGuide).inset(8)
            // $0.trailing.equalTo(snp.trailing).inset(-40)
             $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-15)
             $0.width.equalTo(snp.width).inset(30)

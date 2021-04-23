@@ -46,7 +46,5 @@ class ViewController: UIViewController {
 }
 //$0,najpierw setup
 //buttony
-//add i layout
-//main view
 //cykl życia view controllera
 //delegate
