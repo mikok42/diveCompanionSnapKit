@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var mainView: MainView!
     
     var diveSites: [DiveSite] = []
-    var siteArrayIterator = 0
+    static var siteArrayIterator = 0
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
     
@@ -36,15 +36,14 @@ class ViewController: UIViewController {
     }
     
     private func assignElements() {
-        let image =  diveSites[siteArrayIterator].pictureName
-        let title = diveSites[siteArrayIterator].name
-        let location = diveSites[siteArrayIterator].location
-        let description = diveSites[siteArrayIterator].description
+        let image =  diveSites[ViewController.siteArrayIterator].pictureName
+        let title = diveSites[ViewController.siteArrayIterator].name
+        let location = diveSites[ViewController.siteArrayIterator].location
+        let description = diveSites[ViewController.siteArrayIterator].description
         
         mainView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
     }
 }
-
 //$0,najpierw setup
 //buttony
 //add i layout

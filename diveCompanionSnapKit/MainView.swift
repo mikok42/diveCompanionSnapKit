@@ -11,6 +11,16 @@ import UIKit
 class MainView: UIView {
     
     // MARK: Controlls
+    lazy private var buttonStackView: UIStackView = {
+        let buttonStack = UIStackView()
+        buttonStack.distribution = .fillEqually
+        buttonStack.alignment = .fill
+        buttonStack.contentMode = .scaleToFill
+        buttonStack.axis = .horizontal
+        buttonStack.spacing = 0
+        return buttonStack
+    }()
+    
     lazy private var siteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -45,6 +55,9 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("⬅️", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.backgroundColor = UIColor.init(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
+        button.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(prevButtonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -53,6 +66,9 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("➡️", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.backgroundColor = UIColor(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
+        button.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextButtonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -61,6 +77,9 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("🏠", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.backgroundColor = UIColor(red: 254.0/255.0, green: 220.0/255.0, blue: 183.0/255.0, alpha: 1)
+        button.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(homeButtonTouched), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -79,9 +98,34 @@ class MainView: UIView {
         siteDescriptionLabel.text = siteDescription
     }
     
+    @objc func prevButtonLetGo(_ sender: UIButton)
+    {
+        sender.alpha = 1
+    }
+    
+    @objc func prevButtonTouched(_ sender: UIButton) {
+        sender.alpha = 0.5
+    }
+    
+    @objc func nextButtonLetGo(_ sender: UIButton) {
+        sender.alpha = 1
+    }
+    
+    @objc func nextButtonTouched(_ sender: UIButton) {
+        sender.alpha = 0.5
+    }
+    
+    @objc func homeButtonLetGo(_ sender: UIButton) {
+        sender.alpha = 1
+    }
+    
+    @objc func homeButtonTouched(_ sender: UIButton) {
+        sender.alpha = 0.5
+    }
+    
     // MARK: Private funcs
     private func addSubviews() {
-        [siteImageView, siteLocationLabel, siteDescriptionLabel, siteTitleLabel].forEach {
+        [siteImageView, siteLocationLabel, siteDescriptionLabel, siteTitleLabel, prevButton, nextButton, homeButton, buttonStackView].forEach {
             addSubview($0)
         }
     }
@@ -91,6 +135,43 @@ class MainView: UIView {
         descriptionSetup()
         locationSetup()
         titleSetup()
+        prevButtonSetup()
+        nextButtonSetup()
+        homeButtonSetup()
+        setUpButtonView()
+    }
+    
+    private func setUpButtonView() {
+        buttonStackView.snp.makeConstraints {
+            $0.bottom.equalTo(snp.bottom).inset(20)
+            $0.leading.equalTo(snp.leading)
+            $0.trailing.equalTo(snp.trailing)
+            $0.height.equalTo(38)
+        }
+        buttonStackView.addSubview(prevButton)
+        buttonStackView.addSubview(nextButton)
+        buttonStackView.addSubview(homeButton)
+    }
+    
+    private func prevButtonSetup() {
+        prevButton.snp.makeConstraints {
+            $0.width.equalTo(snp.width).dividedBy(3)
+            $0.leading.equalTo(homeButton.snp.trailing)
+        }
+    }
+    
+    private func nextButtonSetup() {
+        nextButton.snp.makeConstraints {
+            $0.width.equalTo(snp.width).dividedBy(3)
+            $0.leading.equalTo(prevButton.snp.trailing)
+        }
+    }
+    
+    private func homeButtonSetup() {
+        homeButton.snp.makeConstraints {
+            $0.leading.equalTo(snp.leading)
+            $0.width.equalTo(snp.width).dividedBy(3)
+        }
     }
     
     private func imageSetup() {
@@ -105,12 +186,14 @@ class MainView: UIView {
     private func titleSetup() {
         siteTitleLabel.snp.makeConstraints {
             $0.topMargin.equalTo(siteImageView.snp_bottomMargin).inset(-20)
+            $0.leading.equalTo(snp.leading).inset(8)
         }
     }
     
     private func locationSetup() {
         siteLocationLabel.snp.makeConstraints {
             $0.topMargin.equalTo(siteTitleLabel.snp_bottomMargin).inset(-15)
+            $0.leading.equalTo(snp.leading).inset(8)
         }
     }
     
