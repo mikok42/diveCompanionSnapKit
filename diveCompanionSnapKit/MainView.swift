@@ -51,7 +51,7 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("⬅️", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = UIColor.init(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
         button.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
@@ -62,7 +62,7 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("➡️", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = UIColor(red: 92.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
         button.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
@@ -73,7 +73,7 @@ class MainView: UIView {
         let button = UIButton()
         button.setTitle("🏠", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = UIColor(red: 254.0/255.0, green: 220.0/255.0, blue: 183.0/255.0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
         button.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
@@ -95,23 +95,23 @@ class MainView: UIView {
     }
     
     // MARK: Buttons
-    @objc func buttonLetGoOutside(_ sender: UIButton) {
+    @objc private func buttonLetGoOutside(_ sender: UIButton) {
         sender.alpha = 1
     }
     
-    @objc func buttonTouched(_ sender: UIButton) {
+    @objc private func buttonTouched(_ sender: UIButton) {
         sender.alpha = 0.5
     }
     
-    @objc func nextButtonLetGo(_ sender: UIButton) {
+    @objc private func nextButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
     }
     
-    @objc func prevButtonLetGo(_ sender: UIButton) {
+    @objc private func prevButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
     }
    
-    @objc func homeButtonLetGo(_ sender: UIButton) {
+    @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
     }
     
