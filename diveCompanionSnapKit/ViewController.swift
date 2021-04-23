@@ -65,9 +65,9 @@ class ViewController: UIViewController {
                 guard let data = data else { return }
                 let tempdiveSites: [DiveSite] = try parser.parse(jsonData: data)
                 diveSites = tempdiveSites
-//                DispatchQueue.main.async {
-//                    
-//                }
+                DispatchQueue.main.async {
+                    
+                }
                 assignElements()
             } catch {
                 print(error)
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     
     private func addSubviews() {
         subviewsArray.forEach {
-            view.addSubview($0)
+            self.view.addSubview($0)
         }
     }
     
@@ -96,11 +96,11 @@ class ViewController: UIViewController {
     }
     
     private func imageSetup() {
-        siteImageView.snp.makeConstraints { img in
-            img.height.equalTo(view.snp.height).dividedBy(3)
-            img.width.equalTo(view.bounds.width)
-            img.centerX.equalTo(view.center)
-            img.top.equalTo(view.snp.top)
+        siteImageView.snp.makeConstraints {
+            $0.height.equalTo(300)
+            $0.width.equalTo(self.view.bounds.width)
+            $0.centerX.equalTo(self.view.center)
+            $0.leading.equalTo(self.view.snp.leading)
         }
     }
     
