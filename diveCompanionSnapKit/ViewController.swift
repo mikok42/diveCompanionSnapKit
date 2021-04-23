@@ -15,9 +15,30 @@ class ViewController: UIViewController {
     
      lazy private var siteImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        //imageView.contentMode = .scaleAspectFill
         //subviewsArray.append(imageView)
         return imageView
+    }()
+    
+    lazy private var prevButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("⬅️", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        return button
+    }()
+    
+    lazy private var nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("➡️", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        return button
+    }()
+    
+    lazy private var homeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("🏠", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        return button
     }()
     
     lazy private var siteTitleLabel: UILabel = {
@@ -100,10 +121,10 @@ class ViewController: UIViewController {
     
     private func imageSetup() {
         siteImageView.snp.makeConstraints {
-            $0.height.equalTo(300)
-            $0.width.equalTo(self.view.bounds.width)
-            $0.centerX.equalTo(self.view.center)
-            $0.leading.equalTo(self.view.snp.leading)
+            $0.top.equalTo(view.snp.top)
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
+            $0.height.lessThanOrEqualTo(view.snp.height).dividedBy(3)
         }
     }
     
