@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 
-protocol ButtonDelegate {
-    func buttonPressed(_ sender: UIButton)
+protocol ButtonDelegate: AnyObject {
+    func prevButtonPressed(_ sender: UIButton)
+    func nextButtonPressed(_ sender: UIButton)
+    func homeButtonPressed(_ sender: UIButton)
 }
 
 class MainView: UIView {
-    var buttonDelegate: ButtonDelegate?
+    weak var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
     lazy private var buttonStackView: UIStackView = {
@@ -110,17 +112,17 @@ class MainView: UIView {
     
     @objc private func nextButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.buttonPressed(sender)
+        buttonDelegate?.nextButtonPressed(sender)
     }
     
     @objc private func prevButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.buttonPressed(sender)
+        buttonDelegate?.prevButtonPressed(sender)
     }
    
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.buttonPressed(sender)
+        buttonDelegate?.homeButtonPressed(sender)
     }
     
     // MARK: Private funcs

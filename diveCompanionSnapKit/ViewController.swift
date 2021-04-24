@@ -47,30 +47,31 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ButtonDelegate {
-    func buttonPressed(_ sender: UIButton) {
-        switch sender.currentTitle {
-        case "⬅️":
-            print("dupa")
-            if siteArrayIterator > 0 {
-                siteArrayIterator -= 1
-            } else {
-                siteArrayIterator = diveSites.count - 1
-            }
-            assignElements()
-        case "➡️":
+    func homeButtonPressed(_ sender: UIButton) {
+        print("home")
+    }
+    
+    func nextButtonPressed(_ sender: UIButton) {
             if siteArrayIterator  < diveSites.count - 1 {
                 siteArrayIterator += 1
             } else {
                 siteArrayIterator = 0
             }
             assignElements()
-        default:
-            print("this button doesn't exist")
+    }
+    
+    func prevButtonPressed(_ sender: UIButton) {
+            if siteArrayIterator > 0 {
+                siteArrayIterator -= 1
+            } else {
+                siteArrayIterator = diveSites.count - 1
+            }
+            assignElements()
         }
     }
     
     
-}
+
 //$0,najpierw setup
 //buttony
 //cykl życia view controllera
