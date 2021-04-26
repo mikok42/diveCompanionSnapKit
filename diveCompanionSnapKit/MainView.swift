@@ -14,7 +14,7 @@ protocol ButtonDelegate: AnyObject {
     func homeButtonPressed(_ sender: UIButton)
 }
 
-class MainView: UIView {
+public class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
@@ -87,7 +87,7 @@ class MainView: UIView {
         return button
     }()
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         addSubviews()
         setupSubviews()

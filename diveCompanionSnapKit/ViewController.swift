@@ -9,14 +9,23 @@ import UIKit
 import SnapKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, HasCustomView {
+    typealias CustomView = MainView
     
-    @IBOutlet var mainView: MainView!
+    
+   // @IBOutlet var mainView: MainView!
 
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
+    
+    override func loadView() {
+        super.loadView()
+        let mainView = CustomView()
+        view = CustomView()
+        mainView.buttonDelegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +42,6 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-        mainView.buttonDelegate = self
     }
     
     private func assignElements() {
@@ -42,7 +50,7 @@ class ViewController: UIViewController {
         let location = diveSites[siteArrayIterator].location
         let description = diveSites[siteArrayIterator].description
         
-        mainView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
+        view.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
     }
 }
 
@@ -57,7 +65,7 @@ extension ViewController: ButtonDelegate {
             } else {
                 siteArrayIterator = 0
             }
-            assignElements()
+        assignElements()
     }
     
     func prevButtonPressed(_ sender: UIButton) {
@@ -66,11 +74,23 @@ extension ViewController: ButtonDelegate {
             } else {
                 siteArrayIterator = diveSites.count - 1
             }
-            assignElements()
+        assignElements()
         }
     }
     
-    
+public protocol HasCustomView {
+    associatedtype CustomView: UIView
+}
+
+extension HasCustomView where Self: UIViewController {
+    public var myView: MainView {
+        guard let myView = view as? MainView else {
+            fatalError("view should be \(String(describing: view.self)) but is \(type(of: view))")
+            
+        }
+        return myView
+    }
+}
 
 //$0,najpierw setup
 //buttony
