@@ -9,12 +9,17 @@ import Foundation
 import UIKit
 
 protocol ButtonDelegate: AnyObject {
-    func prevButtonPressed(_ sender: UIButton)
-    func nextButtonPressed(_ sender: UIButton)
-    func homeButtonPressed(_ sender: UIButton)
+    func prevButtonPressed()
+    func nextButtonPressed()
+    func homeButtonPressed()
 }
 
-public class MainView: UIView {
+extension ButtonDelegate {
+    func homeButtonPressed() {
+        print("home")
+    }
+}
+class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
@@ -87,7 +92,7 @@ public class MainView: UIView {
         return button
     }()
     
-    public override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         addSubviews()
         setupSubviews()
@@ -112,17 +117,17 @@ public class MainView: UIView {
     
     @objc private func nextButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.nextButtonPressed(sender)
+        buttonDelegate?.nextButtonPressed()
     }
     
     @objc private func prevButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.prevButtonPressed(sender)
+        buttonDelegate?.prevButtonPressed()
     }
    
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.homeButtonPressed(sender)
+        buttonDelegate?.homeButtonPressed()
     }
     
     // MARK: Private funcs

@@ -9,27 +9,16 @@ import UIKit
 import SnapKit
 import SwiftUI
 
-class ViewController: UIViewController, HasCustomView {
-    typealias CustomView = MainView
+class ViewController: CustomViewController<MainView> {
     
-    
-   // @IBOutlet var mainView: MainView!
-
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
     let parser = JSONParser.sharedParser
     
-    override func loadView() {
-        super.loadView()
-        let mainView = CustomView()
-        view = CustomView()
-        mainView.buttonDelegate = self
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        customView.buttonDelegate = self
         parser.readFromURL(fromURL: url) { [self] (data) in
             do {
                 guard let data = data else { return }
@@ -50,47 +39,53 @@ class ViewController: UIViewController, HasCustomView {
         let location = diveSites[siteArrayIterator].location
         let description = diveSites[siteArrayIterator].description
         
-        view.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
+        customView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
     }
 }
 
 extension ViewController: ButtonDelegate {
-    func homeButtonPressed(_ sender: UIButton) {
-        print("home")
-    }
     
-    func nextButtonPressed(_ sender: UIButton) {
-            if siteArrayIterator  < diveSites.count - 1 {
-                siteArrayIterator += 1
-            } else {
-                siteArrayIterator = 0
-            }
-        assignElements()
-    }
-    
-    func prevButtonPressed(_ sender: UIButton) {
-            if siteArrayIterator > 0 {
-                siteArrayIterator -= 1
-            } else {
-                siteArrayIterator = diveSites.count - 1
-            }
-        assignElements()
+    func nextButtonPressed() {
+        if siteArrayIterator  < diveSites.count - 1 {
+            siteArrayIterator += 1
+        } else {
+            siteArrayIterator = 0
         }
+        assignElements()
     }
     
-public protocol HasCustomView {
-    associatedtype CustomView: UIView
+    func prevButtonPressed() {
+        if siteArrayIterator > 0 {
+            siteArrayIterator -= 1
+        } else {
+            siteArrayIterator = diveSites.count - 1
+        }
+        assignElements()
+    }
 }
 
-extension HasCustomView where Self: UIViewController {
-    public var myView: MainView {
-        guard let myView = view as? MainView else {
-            fatalError("view should be \(String(describing: view.self)) but is \(type(of: view))")
-            
-        }
-        return myView
+class CustomViewController<CustomView: UIView>: UIViewController {
+    var customView: CustomView {
+        return view as! CustomView
+    }
+    override func loadView() {
+        view = CustomView()
     }
 }
+
+//
+//protocol HasCustomView {
+//    associatedtype CustomView: UIView
+//}
+//
+//extension HasCustomView where Self: UIViewController {
+//    var myView: CustomView {
+//        guard let myView = view as? CustomView else {
+//            fatalError("view should be \(String(describing: view.self)) but is \(type(of: view))")
+//        }
+//        return myView
+//    }
+//}
 
 //$0,najpierw setup
 //buttony
