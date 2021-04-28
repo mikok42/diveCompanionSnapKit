@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Then
 
 protocol ButtonDelegate: AnyObject {
     func prevButtonPressed()
@@ -20,11 +19,12 @@ extension ButtonDelegate {
         print("home")
     }
 }
+
 class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
-    lazy private var buttonStackView = UIStackView().then {
+    private lazy var buttonStackView = UIStackView().then {
         $0.distribution = .fillEqually
         $0.alignment = .fill
         $0.contentMode = .scaleToFill
@@ -32,25 +32,25 @@ class MainView: UIView {
         $0.spacing = 0
     }
     
-    lazy private var siteImageView = UIImageView().then {
+    private lazy var siteImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
     
-    lazy private var siteTitleLabel = UILabel().then {
+    private lazy var siteTitleLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
     }
     
-    lazy private var siteLocationLabel = UILabel().then {
+    private lazy var siteLocationLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
     }
     
-    lazy private var siteDescriptionLabel = UILabel().then {
+    private lazy var siteDescriptionLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 16)
         $0.numberOfLines = 0
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     
-    lazy private var prevButton = UIButton().then {
+    private lazy var prevButton = UIButton().then {
         $0.setTitle("⬅️", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
@@ -59,7 +59,7 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
     }
     
-    lazy private var nextButton = UIButton().then {
+    private lazy var nextButton = UIButton().then {
         $0.setTitle("➡️", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
@@ -68,7 +68,7 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
     }
     
-    lazy private var homeButton = UIButton().then {
+    private lazy var homeButton = UIButton().then {
         $0.setTitle("🏠", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
@@ -79,6 +79,7 @@ class MainView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         addSubviews()
         setupSubviews()
     }

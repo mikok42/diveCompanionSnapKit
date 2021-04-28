@@ -17,6 +17,7 @@
 		D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A02631C81900577F91 /* JsonParser.swift */; };
 		D01AD5A42631C81900577F91 /* diveSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A12631C81900577F91 /* diveSite.swift */; };
 		D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5D42631FF1A00577F91 /* MainView.swift */; };
+		D07756EF26398D7C002D7195 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07756EE26398D7B002D7195 /* Then.swift */; };
 		D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CD4FBB2633452800CFF221 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		D01AD5A02631C81900577F91 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		D01AD5A12631C81900577F91 /* diveSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diveSite.swift; sourceTree = "<group>"; };
 		D01AD5D42631FF1A00577F91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D07756EE26398D7B002D7195 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		D0CD4FBB2633452800CFF221 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveCompanionSnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				D01AD5802631902200577F91 /* SceneDelegate.swift */,
 				D01AD5822631902200577F91 /* ViewController.swift */,
 				D01AD5D42631FF1A00577F91 /* MainView.swift */,
+				D07756EE26398D7B002D7195 /* Then.swift */,
 				D01AD5872631902700577F91 /* Assets.xcassets */,
 				D01AD5892631902700577F91 /* LaunchScreen.storyboard */,
 				D01AD58C2631902700577F91 /* Info.plist */,
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01AD5832631902200577F91 /* ViewController.swift in Sources */,
+				D07756EF26398D7C002D7195 /* Then.swift in Sources */,
 				D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */,
 				D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */,
 				D01AD5A22631C81900577F91 /* DataParserError.swift in Sources */,
