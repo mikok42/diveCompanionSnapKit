@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Then
 
 protocol ButtonDelegate: AnyObject {
     func prevButtonPressed()
@@ -23,74 +24,58 @@ class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     
     // MARK: Controlls
-    lazy private var buttonStackView: UIStackView = {
-        let buttonStack = UIStackView()
-        buttonStack.distribution = .fillEqually
-        buttonStack.alignment = .fill
-        buttonStack.contentMode = .scaleToFill
-        buttonStack.axis = .horizontal
-        buttonStack.spacing = 0
-        return buttonStack
-    }()
+    lazy private var buttonStackView = UIStackView().then {
+        $0.distribution = .fillEqually
+        $0.alignment = .fill
+        $0.contentMode = .scaleToFill
+        $0.axis = .horizontal
+        $0.spacing = 0
+    }
     
-    lazy private var siteImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    lazy private var siteImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     
-    lazy private var siteTitleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
-        return titleLabel
-    }()
+    lazy private var siteTitleLabel = UILabel().then {
+        $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
+    }
     
-    lazy private var siteLocationLabel: UILabel = {
-        let locationLabel = UILabel()
-        locationLabel.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
-        return locationLabel
-    }()
+    lazy private var siteLocationLabel = UILabel().then {
+        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
+    }
     
-    lazy private var siteDescriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont(name: Constants.fontName, size: 16)
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        return descriptionLabel
-    }()
+    lazy private var siteDescriptionLabel = UILabel().then {
+        $0.font = UIFont(name: Constants.fontName, size: 16)
+        $0.numberOfLines = 0
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    }
     
-    lazy private var prevButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("⬅️", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
-        button.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
-        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        return button
-    }()
+    lazy private var prevButton = UIButton().then {
+        $0.setTitle("⬅️", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
+        $0.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+    }
     
-    lazy private var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("➡️", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
-        button.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
-        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        return button
-    }()
+    lazy private var nextButton = UIButton().then {
+        $0.setTitle("➡️", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
+        $0.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+    }
     
-    lazy private var homeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("🏠", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
-        button.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
-        button.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-        return button
-    }()
+    lazy private var homeButton = UIButton().then {
+        $0.setTitle("🏠", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
+        $0.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -124,7 +109,7 @@ class MainView: UIView {
         sender.alpha = 1
         buttonDelegate?.prevButtonPressed()
     }
-   
+    
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
         buttonDelegate?.homeButtonPressed()
