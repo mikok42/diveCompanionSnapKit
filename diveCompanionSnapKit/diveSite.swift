@@ -15,10 +15,5 @@ struct DiveSite: Codable {
 }
 
 //completion blocks
-
-//computed property!!!!
-//closures + funckje wyższego rzędu
-//klasy v. struktury
-
 //typy generyczne
 //UI alert view

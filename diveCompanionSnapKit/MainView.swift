@@ -11,17 +11,21 @@ import UIKit
 protocol ButtonDelegate: AnyObject {
     func prevButtonPressed()
     func nextButtonPressed()
-    func homeButtonPressed()
 }
 
-extension ButtonDelegate {
-    func homeButtonPressed() {
-        print("home")
-    }
+protocol ButtonDataSource: AnyObject {
+    func homeButtonPressed() -> UIColor?
 }
+
+//extension ButtonDelegate {
+//    func homeButtonPressed() {
+//        print("home")
+//    }
+//}
 
 class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
+    weak var buttonDataSource: ButtonDataSource?
     
     // MARK: Controlls
     private lazy var buttonStackView = UIStackView().then {
@@ -113,7 +117,9 @@ class MainView: UIView {
     
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        buttonDelegate?.homeButtonPressed()
+        let colour = buttonDataSource?.homeButtonPressed()
+        sender.backgroundColor = colour
+        //buttonDelegate?.homeButtonPressed()
     }
     
     // MARK: Private funcs

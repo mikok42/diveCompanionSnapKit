@@ -7,10 +7,10 @@
 
 import UIKit
 import SnapKit
-import SwiftUI
 
 class ViewController: CustomViewController<MainView> {
     
+    var countryIndex: Int? 
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
     let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
@@ -19,6 +19,7 @@ class ViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.buttonDelegate = self
+        customView.buttonDataSource = self
         parser.readFromURL(fromURL: url) { [self] (data) in
             do {
                 guard let data = data else { return }
@@ -32,6 +33,7 @@ class ViewController: CustomViewController<MainView> {
             }
         }
     }
+    
     
     private func assignElements() {
         let image =  diveSites[siteArrayIterator].pictureName
@@ -64,6 +66,13 @@ extension ViewController: ButtonDelegate {
     }
 }
 
+extension ViewController: ButtonDataSource {
+    func homeButtonPressed() -> UIColor? {
+        let viewController = TableViewController()
+        present(viewController, animated: true, completion: nil)
+        return [#colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)].randomElement()
+    }
+}
 
 class CustomViewController<CustomView: UIView>: UIViewController {
     var customView: CustomView {
