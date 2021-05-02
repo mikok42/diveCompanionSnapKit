@@ -10,11 +10,13 @@ import UIKit
 
 final class CountryTableViewContainer: UIView {
     var countries: [String] = ["Egypt", "Croatia", "Sudan", "Poland"]
+    var tableDataSource: UITableViewDataSource?
+    var tableDelegate: UITableViewDelegate?
+    var cellStyle = CountryCell()
     
-    
-    private lazy var countryTable = UITableView().then {
+    var countryTable = UITableView().then {
         $0.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
-        $0.delegate = self
+        $0.rowHeight = 70
     }
     
     override func layoutSubviews() {
@@ -33,9 +35,5 @@ final class CountryTableViewContainer: UIView {
             $0.height.equalTo(snp.height).dividedBy(2)
         }
     }
-}
-
-extension CountryTableViewContainer: UITableViewDelegate {
-    
 }
 
