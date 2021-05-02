@@ -49,6 +49,11 @@ extension TempTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(countries[indexPath.row])
+        let viewController = ViewController()
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+       
     }
 }

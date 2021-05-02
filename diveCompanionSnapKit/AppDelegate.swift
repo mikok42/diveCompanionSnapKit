@@ -12,8 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let viewController = ViewController()
-        viewController.countryIndex = 5
+        let viewController = TempTableViewController()
+       // viewController.countryIndex = 5
         window = UIWindow()
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
