@@ -13,13 +13,29 @@ class ViewController: CustomViewController<MainView> {
     var countryIndex: Int? 
     var diveSites: [DiveSite] = []
     var siteArrayIterator = 0
-    let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/siteData.json"
+    var url: String = ""
     let parser = JSONParser.sharedParser
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.buttonDelegate = self
         customView.buttonDataSource = self
+        downloadSite(url: url)
+        print(url)
+    }
+    
+    
+    private func assignElements() {
+        let image =  diveSites[siteArrayIterator].pictureName
+        let title = diveSites[siteArrayIterator].name
+        let location = diveSites[siteArrayIterator].location
+        let description = diveSites[siteArrayIterator].description
+        
+        customView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
+    }
+    
+    private func downloadSite(url: String) {
         parser.readFromURL(fromURL: url) { [self] (data) in
             do {
                 guard let data = data else { return }
@@ -32,16 +48,6 @@ class ViewController: CustomViewController<MainView> {
                 print(error)
             }
         }
-    }
-    
-    
-    private func assignElements() {
-        let image =  diveSites[siteArrayIterator].pictureName
-        let title = diveSites[siteArrayIterator].name
-        let location = diveSites[siteArrayIterator].location
-        let description = diveSites[siteArrayIterator].description
-        
-        customView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
     }
 }
 

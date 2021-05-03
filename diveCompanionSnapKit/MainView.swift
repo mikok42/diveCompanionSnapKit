@@ -31,7 +31,6 @@ class MainView: UIView {
     private lazy var buttonStackView = UIStackView().then {
         $0.distribution = .fillEqually
         $0.alignment = .fill
-        $0.contentMode = .scaleToFill
         $0.axis = .horizontal
         $0.spacing = 0
     }
@@ -83,7 +82,7 @@ class MainView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
         addSubviews()
         setupSubviews()
     }
@@ -134,35 +133,35 @@ class MainView: UIView {
         descriptionSetup()
         locationSetup()
         titleSetup()
+        setUpButtonView()
         prevButtonSetup()
         nextButtonSetup()
-        homeButtonSetup()
-        setUpButtonView()
+       // homeButtonSetup()
     }
     
     private func setUpButtonView() {
+        buttonStackView.addSubview(prevButton)
+        buttonStackView.addSubview(nextButton)
         buttonStackView.snp.makeConstraints {
             $0.bottom.equalTo(snp.bottom).inset(20)
             $0.leading.equalTo(snp.leading)
             $0.trailing.equalTo(snp.trailing)
             $0.height.equalTo(38)
         }
-        buttonStackView.addSubview(prevButton)
-        buttonStackView.addSubview(nextButton)
-        buttonStackView.addSubview(homeButton)
+      //  buttonStackView.addSubview(homeButton)
     }
     
     private func prevButtonSetup() {
         prevButton.snp.makeConstraints {
-            $0.width.equalTo(snp.width).dividedBy(3)
-            $0.leading.equalTo(homeButton.snp.trailing)
+            $0.leading.equalTo(buttonStackView.snp.leading)
+            $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
     
     private func nextButtonSetup() {
         nextButton.snp.makeConstraints {
-            $0.width.equalTo(snp.width).dividedBy(3)
             $0.leading.equalTo(prevButton.snp.trailing)
+            $0.trailing.equalTo(buttonStackView.snp.trailing)
         }
     }
     

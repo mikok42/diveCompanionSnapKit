@@ -21,7 +21,6 @@ final class CountryTableViewContainer: UIView {
     override func layoutSubviews() {
         addSubviews()
         setupSubview()
-        print(":)")
     }
     
     private func addSubviews() {
@@ -37,3 +36,10 @@ final class CountryTableViewContainer: UIView {
     }
 }
 
+extension UITableView {
+    func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T where T: Identifiable {
+        guard let cell = dequeueReusableCell(withIdentifier: CountryCell.identifier, for: indexPath) as? T else { fatalError("Couldn't dequeue cell with id:  \(T.identifier)") }
+        return cell
+    }
+ 
+}

@@ -9,27 +9,21 @@ import Foundation
 import UIKit
 import SnapKit
 
-class CountryCell: UITableViewCell {
-    
-    class var identifier: String {
-        return String(describing: self)
-    }
-    
-    class var nib: UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
+class CountryCell: UITableViewCell, Identifiable {
     
     private lazy var countryImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
     }
     
     private lazy var countryNameLabel = UILabel().then {
-        $0.font = UIFont(name: Constants.fontName, size: 16)
+        $0.font = UIFont(name: Constants.fontName, size: 20)
     }
     
     func configureCell(country: Country) {
         countryNameLabel.text = country.name
         countryImageView.image = UIImage(named: country.imageName)
+        backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,10 +35,10 @@ class CountryCell: UITableViewCell {
         countryImageView.snp.makeConstraints {
             $0.leading.equalTo(snp.leading)
             $0.width.equalTo(snp.width).dividedBy(3)
-            $0.height.height.equalTo(70)
+            $0.height.equalTo(snp.height)
         }
         countryNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(countryImageView.snp.trailing)
+            $0.leading.equalTo(countryImageView.snp.trailing).offset(10)
         }
     }
     
@@ -53,3 +47,12 @@ class CountryCell: UITableViewCell {
     }
 }
 
+protocol Identifiable: AnyObject {
+    static var identifier: String { get }
+}
+
+extension Identifiable {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}

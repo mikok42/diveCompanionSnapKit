@@ -26,8 +26,6 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
         }
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
-        customView.tableDataSource = self
-        customView.tableDelegate = self
         customView.countryTable.register(CountryCell.self, forCellReuseIdentifier: CountryCell.identifier)
     }
 }
@@ -38,15 +36,33 @@ extension TableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return countries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = customView.countryTable.dequeueReusableCell(withIdentifier: CountryCell.identifier, for: indexPath) as? CountryCell else { return UITableViewCell() }
+        let cell: CountryCell = tableView.dequeueReusableCell(for: indexPath)
         cell.configureCell(country: countries[indexPath.row])
-        print (":(")
         return cell
     }
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = ViewController()
+        let lowerCaseName = countries[indexPath.row].name.lowercased()
+        viewController.url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
+        customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        present(viewController, animated: true, completion: nil)
+    }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+    }
     
 }
