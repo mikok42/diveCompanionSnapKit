@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let viewController = TempTableViewController()
+        let viewController = TableViewController()
        // viewController.countryIndex = 5
         window = UIWindow()
         window?.rootViewController = viewController

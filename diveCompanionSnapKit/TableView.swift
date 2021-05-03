@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 
 final class CountryTableViewContainer: UIView {
-    var countries: [String] = ["Egypt", "Croatia", "Sudan", "Poland"]
     var tableDataSource: UITableViewDataSource?
     var tableDelegate: UITableViewDelegate?
-    var cellStyle = CountryCell()
     
     var countryTable = UITableView().then {
         $0.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
         $0.rowHeight = 70
+        
     }
     
     override func layoutSubviews() {
         addSubviews()
         setupSubview()
+        print(":)")
     }
     
     private func addSubviews() {
@@ -30,9 +30,9 @@ final class CountryTableViewContainer: UIView {
     
     private func setupSubview() {
         countryTable.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide)
-            $0.trailing.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(snp.height).dividedBy(2)
+            $0.leading.equalTo(snp.leading)
+            $0.trailing.equalTo(snp.trailing)
+            $0.height.equalTo(snp.height)
         }
     }
 }
