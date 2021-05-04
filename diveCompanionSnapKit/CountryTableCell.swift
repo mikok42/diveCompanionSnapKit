@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Kingfisher
 
 class CountryCell: UITableViewCell, Identifiable {
     

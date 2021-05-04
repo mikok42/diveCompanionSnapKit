@@ -89,7 +89,12 @@ class MainView: UIView {
     
     // MARK: Public funcs
     func populate(siteTitle: String, siteDescription: String, siteLocation: String, siteImageName: String) {
-        siteImageView.image = UIImage(named: siteImageName)
+        let fullURL = Constants.imageRepo  + siteImageName + ".jpg?raw=true"
+        siteImageView.kf.setImage(
+            with: URL(string: fullURL),
+            placeholder: UIImage(named: "salemWreck"),
+            options: [.transition(.fade(1))]
+        )
         siteTitleLabel.text = siteTitle
         siteLocationLabel.text = siteLocation
         siteDescriptionLabel.text = siteDescription
@@ -204,5 +209,4 @@ class MainView: UIView {
         }
     }
 }
-
 

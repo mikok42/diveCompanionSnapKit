@@ -13,4 +13,5 @@ struct Constants {
     static let boldFontMod: String = " Bold"
     static let labelsDistance: Float = 20
     static let labelsMargins: Float = 20
+    static let imageRepo: String = "https://github.com/mikok42/diveCompImgs/blob/main/"
 }

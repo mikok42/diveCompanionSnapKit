@@ -55,7 +55,7 @@ extension ViewController: ButtonDelegate {
     
     func nextButtonPressed() {
         if siteArrayIterator  < diveSites.count - 1 {
-            siteArrayIterator += 1
+            siteArrayIterator++
         } else {
             siteArrayIterator = 0
         }
@@ -64,7 +64,7 @@ extension ViewController: ButtonDelegate {
     
     func prevButtonPressed() {
         if siteArrayIterator > 0 {
-            siteArrayIterator -= 1
+            siteArrayIterator-- 
         } else {
             siteArrayIterator = diveSites.count - 1
         }
