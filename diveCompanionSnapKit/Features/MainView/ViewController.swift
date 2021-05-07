@@ -46,6 +46,7 @@ class ViewController: CustomViewController<MainView> {
                 }
             } catch {
                 print(error)
+                
             }
         }
     }
@@ -74,8 +75,8 @@ extension ViewController: ButtonDelegate {
 
 extension ViewController: ButtonDataSource {
     func homeButtonPressed() -> UIColor? {
-        let viewController = TempTableViewController()
-        present(viewController, animated: true, completion: nil)
+//        let viewController = TempTableViewController()
+//        present(viewController, animated: true, completion: nil)
         return [#colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)].randomElement()
     }
 }

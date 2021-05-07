@@ -41,16 +41,21 @@ class MainView: UIView {
     
     private lazy var siteTitleLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
     }
     
     private lazy var siteLocationLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
     }
     
     private lazy var siteDescriptionLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 16)
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.8
         $0.numberOfLines = 0
-        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
     
     private lazy var prevButton = UIButton().then {
