@@ -13,7 +13,7 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     let parser = JSONParser.sharedParser
     let url: String = " "
     var countries: [Country] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +21,16 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
             guard let localData = try? parser.readLocalFile(forName: "Countries") else { return }
             let tempCountries: [Country]? = try parser.parse(jsonData: localData)
             countries = tempCountries ?? []
-        } catch  {
+        } catch {
             print(error)
         }
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
-        customView.countryTable.register(CountryCell.self, forCellReuseIdentifier: CountryCell.identifier)
+        customView.countryTable.registerCellClasses([CountryCell.self])
     }
 }
 
-extension TableViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countries.count
@@ -44,10 +41,14 @@ extension TableViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configureCell(country: countries[indexPath.row])
         return cell
     }
- 
+    
+}
+
+extension TableViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = ViewController()
-        let lowerCaseName = countries[indexPath.row].name.lowercased()
+        guard let lowerCaseName = countries[safe: indexPath.row]?.name.lowercased() else { return }
         viewController.url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
         customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         present(viewController, animated: true, completion: nil)
@@ -64,5 +65,11 @@ extension TableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
     }
-    
 }
+
+extension Collection {
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
+

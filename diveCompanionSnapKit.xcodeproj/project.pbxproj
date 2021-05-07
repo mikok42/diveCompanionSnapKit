@@ -18,11 +18,9 @@
 		D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A02631C81900577F91 /* JsonParser.swift */; };
 		D01AD5A42631C81900577F91 /* diveSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A12631C81900577F91 /* diveSite.swift */; };
 		D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5D42631FF1A00577F91 /* MainView.swift */; };
-		D0256006263F07750001598B /* tempTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0256005263F07750001598B /* tempTableViewController.swift */; };
 		D02560082641B2030001598B /* PlusPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02560072641B2030001598B /* PlusPlus.swift */; };
 		D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */; };
 		D05D9199263AD31500AA8BE0 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D9198263AD31500AA8BE0 /* TableView.swift */; };
-		D05D919C263AE0E100AA8BE0 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D919B263AE0E100AA8BE0 /* Storage.swift */; };
 		D05D919E263AE15000AA8BE0 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D919D263AE15000AA8BE0 /* Storage.swift */; };
 		D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D919F263AF8CA00AA8BE0 /* Country.swift */; };
 		D05D91A2263AFA2D00AA8BE0 /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D05D91A1263AFA2D00AA8BE0 /* Countries.json */; };
@@ -45,11 +43,9 @@
 		D01AD5A02631C81900577F91 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		D01AD5A12631C81900577F91 /* diveSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diveSite.swift; sourceTree = "<group>"; };
 		D01AD5D42631FF1A00577F91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		D0256005263F07750001598B /* tempTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempTableViewController.swift; sourceTree = "<group>"; };
 		D02560072641B2030001598B /* PlusPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlus.swift; sourceTree = "<group>"; };
 		D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		D05D9198263AD31500AA8BE0 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		D05D919B263AE0E100AA8BE0 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D05D919D263AE15000AA8BE0 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D05D919F263AF8CA00AA8BE0 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		D05D91A1263AFA2D00AA8BE0 /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
@@ -100,29 +96,75 @@
 		D01AD57D2631902200577F91 /* diveCompanionSnapKit */ = {
 			isa = PBXGroup;
 			children = (
-				D01AD59F2631C81900577F91 /* DataParserError.swift */,
-				D0CD4FBB2633452800CFF221 /* Constants.swift */,
-				D01512E2263BF73500BAC208 /* CountryTableCell.swift */,
-				D01AD5A12631C81900577F91 /* diveSite.swift */,
-				D01AD5A02631C81900577F91 /* JsonParser.swift */,
+				D025D67F264527CD003DD401 /* Services */,
+				D025D67D2645274E003DD401 /* Utilities */,
+				D025D679264526C9003DD401 /* Features */,
+				D025D676264526A6003DD401 /* Model */,
 				D01AD57E2631902200577F91 /* AppDelegate.swift */,
 				D01AD5802631902200577F91 /* SceneDelegate.swift */,
-				D01AD5822631902200577F91 /* ViewController.swift */,
-				D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */,
-				D0256005263F07750001598B /* tempTableViewController.swift */,
-				D01AD5D42631FF1A00577F91 /* MainView.swift */,
-				D05D9198263AD31500AA8BE0 /* TableView.swift */,
-				D07756EE26398D7B002D7195 /* Then.swift */,
 				D01AD5872631902700577F91 /* Assets.xcassets */,
 				D01AD5892631902700577F91 /* LaunchScreen.storyboard */,
 				D01AD58C2631902700577F91 /* Info.plist */,
-				D05D919D263AE15000AA8BE0 /* Storage.swift */,
-				D05D919B263AE0E100AA8BE0 /* Storage.swift */,
-				D05D919F263AF8CA00AA8BE0 /* Country.swift */,
 				D05D91A1263AFA2D00AA8BE0 /* Countries.json */,
-				D02560072641B2030001598B /* PlusPlus.swift */,
 			);
 			path = diveCompanionSnapKit;
+			sourceTree = "<group>";
+		};
+		D025D676264526A6003DD401 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D01AD5A12631C81900577F91 /* diveSite.swift */,
+				D05D919F263AF8CA00AA8BE0 /* Country.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D025D678264526BC003DD401 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				D05D9198263AD31500AA8BE0 /* TableView.swift */,
+				D01512E2263BF73500BAC208 /* CountryTableCell.swift */,
+				D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		D025D679264526C9003DD401 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D025D678264526BC003DD401 /* TableView */,
+				D025D67E26452793003DD401 /* MainView */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D025D67D2645274E003DD401 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D0CD4FBB2633452800CFF221 /* Constants.swift */,
+				D02560072641B2030001598B /* PlusPlus.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D025D67E26452793003DD401 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				D01AD5D42631FF1A00577F91 /* MainView.swift */,
+				D01AD5822631902200577F91 /* ViewController.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		D025D67F264527CD003DD401 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D05D919D263AE15000AA8BE0 /* Storage.swift */,
+				D01AD5A02631C81900577F91 /* JsonParser.swift */,
+				D01AD59F2631C81900577F91 /* DataParserError.swift */,
+				D07756EE26398D7B002D7195 /* Then.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		E69F126B9E7484A9F0258665 /* Frameworks */ = {
@@ -253,10 +295,8 @@
 				D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */,
 				D01512E3263BF73500BAC208 /* CountryTableCell.swift in Sources */,
 				D02560082641B2030001598B /* PlusPlus.swift in Sources */,
-				D0256006263F07750001598B /* tempTableViewController.swift in Sources */,
 				D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */,
 				D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */,
-				D05D919C263AE0E100AA8BE0 /* Storage.swift in Sources */,
 				D01AD5A22631C81900577F91 /* DataParserError.swift in Sources */,
 				D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */,
 				D01AD5A42631C81900577F91 /* diveSite.swift in Sources */,
