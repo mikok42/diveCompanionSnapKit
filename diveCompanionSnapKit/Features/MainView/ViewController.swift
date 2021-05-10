@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: CustomViewController<MainView> {
+final class ViewController: CustomViewController<MainView> {
     
     var countryIndex: Int? 
     var diveSites: [DiveSite] = []
