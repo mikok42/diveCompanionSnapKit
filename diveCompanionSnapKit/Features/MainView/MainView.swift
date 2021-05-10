@@ -27,6 +27,17 @@ class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     weak var buttonDataSource: ButtonDataSource?
     
+    init() {
+        super.init(frame: .zero)
+        backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+        addSubviews()
+        setupSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Controlls
     private lazy var buttonStackView = UIStackView().then {
         $0.distribution = .fillEqually
@@ -83,13 +94,6 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
-        addSubviews()
-        setupSubviews()
     }
     
     // MARK: Public funcs

@@ -11,10 +11,10 @@ import SnapKit
 final class ViewController: CustomViewController<MainView> {
     
     var countryIndex: Int? 
-    var diveSites: [DiveSite] = []
-    var siteArrayIterator = 0
-    var url: String = ""
-    let parser = JSONParser.sharedParser
+    private var diveSites: [DiveSite] = []
+    private var siteArrayIterator = 0
+    private let parser = JSONParser.sharedParser
+    var url: String = " "
 
     
     override func viewDidLoad() {
@@ -24,7 +24,6 @@ final class ViewController: CustomViewController<MainView> {
         downloadSite(url: url)
         print(url)
     }
-    
     
     private func assignElements() {
         let image =  diveSites[siteArrayIterator].pictureName
@@ -55,6 +54,7 @@ final class ViewController: CustomViewController<MainView> {
 extension ViewController: ButtonDelegate {
     
     func nextButtonPressed() {
+        guard !diveSites.isEmpty else { print("list empty"); return }
         if siteArrayIterator  < diveSites.count - 1 {
             siteArrayIterator++
         } else {
@@ -63,7 +63,9 @@ extension ViewController: ButtonDelegate {
         assignElements()
     }
     
+    
     func prevButtonPressed() {
+        guard !diveSites.isEmpty else { print("list empty"); return }
         if siteArrayIterator > 0 {
             siteArrayIterator-- 
         } else {
