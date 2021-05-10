@@ -14,9 +14,17 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     let url: String = " "
     var countries: [Country] = []
     
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCountryData()
+        customView.countryTable.delegate = self
+        customView.countryTable.dataSource = self
+        customView.countryTable.registerCellClasses([CountryCell.self])
+    }
+    
+    fileprivate func getCountryData() {
         do {
             guard let localData = try? parser.readLocalFile(forName: "Countries") else { return }
             let tempCountries: [Country]? = try parser.parse(jsonData: localData)
@@ -24,9 +32,6 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
         } catch {
             print(error)
         }
-        customView.countryTable.delegate = self
-        customView.countryTable.dataSource = self
-        customView.countryTable.registerCellClasses([CountryCell.self])
     }
 }
 

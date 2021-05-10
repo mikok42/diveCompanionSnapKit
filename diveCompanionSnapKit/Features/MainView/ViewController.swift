@@ -104,7 +104,4 @@ class CustomViewController<CustomView: UIView>: UIViewController {
 //    }
 //}
 
-//$0,najpierw setup
-//buttony
 //cykl życia view controllera
-//delegate
