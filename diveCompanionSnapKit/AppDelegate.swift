@@ -10,14 +10,19 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var coordinator: MainCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let viewController = TableViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
+        
+        coordinator = MainCoordinator(navigationController: navigationController)
+        coordinator?.goToMainView()
+        
         window = UIWindow()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
         return true
     }
 }

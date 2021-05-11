@@ -13,14 +13,22 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     let parser = JSONParser.sharedParser
     let url: String = " "
     var countries: [Country] = []
-    //override var navigationController: UINavigationController?
+    weak var coordinator: MainCoordinator?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init() {
+        super.init()
         getCountryData()
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
         customView.countryTable.registerCellClasses([CountryCell.self])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     fileprivate func getCountryData() {
@@ -51,27 +59,12 @@ extension TableViewController: UITableViewDataSource {
 extension TableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = ViewController()
         guard let lowerCaseName = countries[safe: indexPath.row]?.name.lowercased() else { return }
-        viewController.url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
         
-        viewController.modalPresentationStyle = .fullScreen
-        //present(viewController, animated: true, completion: nil)
+        let url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
         
-        self.navigationController?.pushViewController(viewController, animated: true)
-        //self.navigationController?.popViewController(animated: <#T##Bool#>)
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        //customView.countryTable.cellForRow(at: indexPath)?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        //customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //customView.countryTable.cellForRow(at: indexPath)?.backgroundView?.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+        coordinator?.goToSiteView(url: url)
+        print("Mikołaj: \(url)")
     }
 }
 

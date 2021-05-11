@@ -24,8 +24,6 @@ class CountryCell: UITableViewCell, Identifiable {
         $0.backgroundColor = #colorLiteral(red: 0.4071500789, green: 0.7962964484, blue: 0.7670197448, alpha: 1)
     }
     
-    //internal override var selectionStyle: UITableViewCell.SelectionStyle = .gray
-    
     func configureCell(country: Country) {
         countryNameLabel.text = country.name
         countryImageView.image = UIImage(named: country.imageName)

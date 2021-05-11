@@ -14,15 +14,13 @@ final class ViewController: CustomViewController<MainView> {
     private var diveSites: [DiveSite] = []
     private var siteArrayIterator = 0
     private let parser = JSONParser.sharedParser
+    weak var coordinator: MainCoordinator?
     var url: String = " "
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.buttonDelegate = self
-        //customView.buttonDataSource = self
         downloadSite(url: url)
-        print(url)
     }
     
     private func assignElements() {
@@ -75,7 +73,8 @@ extension ViewController: ButtonDelegate {
     }
     
     func homeButtonPressed() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.navigationController.popViewController(animated: false)
+        //coordinator?.goToMainView()
     }
 }
 
@@ -89,8 +88,17 @@ class CustomViewController<CustomView: UIView>: UIViewController {
     var customView: CustomView {
         return view as! CustomView
     }
+    
     override func loadView() {
         view = CustomView()
+    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

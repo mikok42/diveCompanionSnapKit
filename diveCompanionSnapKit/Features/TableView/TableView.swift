@@ -15,7 +15,6 @@ final class CountryTableViewContainer: UIView {
     var countryTable = UITableView().then {
         $0.backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
         $0.rowHeight = 70
-        
     }
     
     override func layoutSubviews() {

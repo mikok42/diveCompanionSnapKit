@@ -210,7 +210,7 @@ class MainView: UIView {
     private func descriptionSetup() {
         siteDescriptionLabel.snp.makeConstraints {
             $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
-            $0.topMargin.equalTo(siteLocationLabel.snp_bottomMargin).inset(-Constants.labelsDistance)
+            $0.topMargin.equalTo(siteLocationLabel.snp.bottom).inset(-Constants.labelsDistance)
             $0.width.equalTo(snp.width).inset(30)
             $0.bottomMargin.lessThanOrEqualTo(buttonStackView.snp_topMargin).inset(Constants.labelsDistance)
         }
