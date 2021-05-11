@@ -11,6 +11,7 @@ import UIKit
 protocol ButtonDelegate: AnyObject {
     func prevButtonPressed()
     func nextButtonPressed()
+    func homeButtonPressed()
 }
 
 protocol ButtonDataSource: AnyObject {
@@ -132,7 +133,7 @@ class MainView: UIView {
         sender.alpha = 1
         let colour = buttonDataSource?.homeButtonPressed()
         sender.backgroundColor = colour
-        //buttonDelegate?.homeButtonPressed()
+        buttonDelegate?.homeButtonPressed()
     }
     
     // MARK: Private funcs
@@ -150,24 +151,24 @@ class MainView: UIView {
         setUpButtonView()
         prevButtonSetup()
         nextButtonSetup()
-       // homeButtonSetup()
+        homeButtonSetup()
     }
     
     private func setUpButtonView() {
         buttonStackView.addSubview(prevButton)
         buttonStackView.addSubview(nextButton)
+        buttonStackView.addSubview(homeButton)
         buttonStackView.snp.makeConstraints {
             $0.bottom.equalTo(snp.bottom).inset(20)
             $0.leading.equalTo(snp.leading)
             $0.trailing.equalTo(snp.trailing)
             $0.height.equalTo(38)
         }
-      //  buttonStackView.addSubview(homeButton)
     }
     
     private func prevButtonSetup() {
         prevButton.snp.makeConstraints {
-            $0.leading.equalTo(buttonStackView.snp.leading)
+            $0.leading.equalTo(homeButton.snp.trailing)
             $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
@@ -176,13 +177,14 @@ class MainView: UIView {
         nextButton.snp.makeConstraints {
             $0.leading.equalTo(prevButton.snp.trailing)
             $0.trailing.equalTo(buttonStackView.snp.trailing)
+            $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
     
     private func homeButtonSetup() {
         homeButton.snp.makeConstraints {
             $0.leading.equalTo(snp.leading)
-            $0.width.equalTo(snp.width).dividedBy(3)
+            $0.width.equalTo(snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
     

@@ -24,7 +24,7 @@ class CountryCell: UITableViewCell, Identifiable {
         countryNameLabel.text = country.name
         countryImageView.image = UIImage(named: country.imageName)
         backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
-        
+        selectionStyle = .gray
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +41,8 @@ class CountryCell: UITableViewCell, Identifiable {
         countryNameLabel.snp.makeConstraints {
             $0.leading.equalTo(countryImageView.snp.trailing).offset(10)
         }
+        
+        
     }
     
     required init?(coder: NSCoder) {

@@ -73,6 +73,10 @@ extension ViewController: ButtonDelegate {
         }
         assignElements()
     }
+    
+    func homeButtonPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension ViewController: ButtonDataSource {
