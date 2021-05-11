@@ -14,9 +14,9 @@ protocol ButtonDelegate: AnyObject {
     func homeButtonPressed()
 }
 
-protocol ButtonDataSource: AnyObject {
-    func homeButtonPressed() -> UIColor?
-}
+//protocol ButtonDataSource: AnyObject {
+//    func homeButtonPressed() -> UIColor?
+//}
 
 //extension ButtonDelegate {
 //    func homeButtonPressed() {
@@ -26,7 +26,7 @@ protocol ButtonDataSource: AnyObject {
 
 class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
-    weak var buttonDataSource: ButtonDataSource?
+    //weak var buttonDataSource: ButtonDataSource?
     
     init() {
         super.init(frame: .zero)
@@ -64,8 +64,6 @@ class MainView: UIView {
     
     private lazy var siteDescriptionLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 16)
-        $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.8
         $0.numberOfLines = 0
         $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
@@ -131,8 +129,6 @@ class MainView: UIView {
     
     @objc private func homeButtonLetGo(_ sender: UIButton) {
         sender.alpha = 1
-        let colour = buttonDataSource?.homeButtonPressed()
-        sender.backgroundColor = colour
         buttonDelegate?.homeButtonPressed()
     }
     

@@ -20,11 +20,17 @@ class CountryCell: UITableViewCell, Identifiable {
         $0.font = UIFont(name: Constants.fontName, size: 20)
     }
     
+    private lazy var selectionColour = UIView().then {
+        $0.backgroundColor = #colorLiteral(red: 0.4071500789, green: 0.7962964484, blue: 0.7670197448, alpha: 1)
+    }
+    
+    //internal override var selectionStyle: UITableViewCell.SelectionStyle = .gray
+    
     func configureCell(country: Country) {
         countryNameLabel.text = country.name
         countryImageView.image = UIImage(named: country.imageName)
         backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
-        selectionStyle = .gray
+        selectedBackgroundView = selectionColour
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
