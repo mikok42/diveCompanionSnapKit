@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 class TableViewController: CustomViewController<CountryTableViewContainer> {
-    let parser: JSONParserProtocol
+    private var serviceProvider: ServiceProviderProtocol
     let url: String = " "
     var countries: [Country] = []
     weak var coordinator: MainCoordinator?
     
     init(serviceProvider: ServiceProviderProtocol) {
-        self.parser = serviceProvider.jsonParser
+        self.serviceProvider = serviceProvider
         super.init()
         getCountryData()
         customView.countryTable.delegate = self
@@ -33,13 +33,8 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     }
     
     fileprivate func getCountryData() {
-        do {
-            guard let localData = try? parser.readLocalFile(forName: "Countries") else { return }
-            let tempCountries: [Country]? = try parser.parse(jsonData: localData)
-            countries = tempCountries ?? []
-        } catch {
-            print(error)
-        }
+        serviceProvider.dataFetcher.fetchData(fileName: url)
+        countries = serviceProvider.dataFetcher.parsedCountryData
     }
 }
 
@@ -65,7 +60,6 @@ extension TableViewController: UITableViewDelegate {
         let url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
         
         coordinator?.goToSiteView(url: url)
-        print("Mikołaj: \(url)")
     }
 }
 
@@ -74,4 +68,4 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
-
+    

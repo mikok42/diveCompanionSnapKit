@@ -31,6 +31,7 @@
 		D07124E3264BEEDF007DA5F8 /* DataFetcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */; };
 		D07124E5264C1178007DA5F8 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E4264C1178007DA5F8 /* CustomViewController.swift */; };
 		D07124E8264C19C5007DA5F8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E7264C19C5007DA5F8 /* DateExtension.swift */; };
+		D07124EA264C2B23007DA5F8 /* DiveDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E9264C2B23007DA5F8 /* DiveDataProtocol.swift */; };
 		D07756EF26398D7C002D7195 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07756EE26398D7B002D7195 /* Then.swift */; };
 		D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CD4FBB2633452800CFF221 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherProtocol.swift; sourceTree = "<group>"; };
 		D07124E4264C1178007DA5F8 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		D07124E7264C19C5007DA5F8 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		D07124E9264C2B23007DA5F8 /* DiveDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveDataProtocol.swift; sourceTree = "<group>"; };
 		D07756EE26398D7B002D7195 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		D0CD4FBB2633452800CFF221 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveCompanionSnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 			children = (
 				D01AD5A12631C81900577F91 /* diveSite.swift */,
 				D05D919F263AF8CA00AA8BE0 /* Country.swift */,
+				D07124E9264C2B23007DA5F8 /* DiveDataProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07124EA264C2B23007DA5F8 /* DiveDataProtocol.swift in Sources */,
 				D07124DF264ADBDF007DA5F8 /* JSONParserProtocol.swift in Sources */,
 				D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */,
 				D01AD5832631902200577F91 /* ViewController.swift in Sources */,

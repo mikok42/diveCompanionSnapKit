@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct DiveSite: Codable {
+struct DiveSite: Codable, DiveData {
     let name: String
     let description: String
     let location: String

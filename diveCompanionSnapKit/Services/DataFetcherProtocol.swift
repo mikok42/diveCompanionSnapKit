@@ -10,6 +10,7 @@ import Foundation
 protocol DataFetcherProtocol {
     var jsonParser: JSONParserProtocol { get }
     var parsedData: [DiveSite] { get set }
+    var parsedCountryData: [Country] { get set }
     var viewDelegate: ViewControllerDelegate? { get set }
 
     func fetchData(url: String)

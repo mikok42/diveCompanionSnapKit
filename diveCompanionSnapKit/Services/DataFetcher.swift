@@ -15,6 +15,7 @@ protocol ViewControllerDelegate {
 class DataFetcher: DataFetcherProtocol {
     var jsonParser: JSONParserProtocol
     var parsedData: [DiveSite] = []
+    var parsedCountryData: [Country] = []
     var viewDelegate: ViewControllerDelegate?
     
     init(jsonParser: JSONParserProtocol) {
@@ -43,7 +44,13 @@ class DataFetcher: DataFetcherProtocol {
         
         
         func fetchData(fileName: String) {
-            
+            do {
+                guard let localData = try? jsonParser.readLocalFile(forName: "Countries") else { return }
+                let tempCountries: [Country]? = try jsonParser.parse(jsonData: localData)
+                self.parsedCountryData = tempCountries ?? []
+            } catch {
+                print(error)
+            }
         }
     }
 

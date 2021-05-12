@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Country: Codable {
+struct Country: Codable, DiveData {
     let name: String
     let imageName: String
 }
