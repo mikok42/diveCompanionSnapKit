@@ -7,9 +7,7 @@
 
 import Foundation
 
-class JSONParser {
-    static let sharedParser = JSONParser()
-    private init(){}
+class JSONParser: JSONParserProtocol {
     
     func readLocalFile(forName name: String) throws -> Data {
         guard let bundlePath = Bundle.main.path(forResource: name, ofType: "json") else { throw DataParserError.fileDoesNotExist }
@@ -18,7 +16,7 @@ class JSONParser {
     }
     
     func readFromURL(fromURL: String, completion: @escaping ((Data?) -> Void)) {
-        guard let url = URL(string: fromURL) else { completion(nil); return }
+        guard let url = URL(string: fromURL) else { completion(nil) ; return }
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let jsonData = data else { return }
             completion(jsonData)

@@ -10,12 +10,13 @@ import UIKit
 import SnapKit
 
 class TableViewController: CustomViewController<CountryTableViewContainer> {
-    let parser = JSONParser.sharedParser
+    let parser: JSONParserProtocol
     let url: String = " "
     var countries: [Country] = []
     weak var coordinator: MainCoordinator?
     
-    override init() {
+    init(serviceProvider: ServiceProviderProtocol) {
+        self.parser = serviceProvider.jsonParser
         super.init()
         getCountryData()
         customView.countryTable.delegate = self

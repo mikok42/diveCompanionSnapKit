@@ -8,21 +8,23 @@
 import UIKit
 
 class MainCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    let serviceProvider: ServiceProviderProtocol
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.serviceProvider = ServiceProvider()
     }
     
     func goToMainView() {
-        let viewController = TableViewController()
+        let viewController = TableViewController(serviceProvider: serviceProvider)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
     
     func goToSiteView(url: String) {
-        let viewController = ViewController()
+        let viewController = ViewController(serviceProvider: serviceProvider)
         viewController.url = url
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)

@@ -25,6 +25,12 @@
 		D05D91A2263AFA2D00AA8BE0 /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D05D91A1263AFA2D00AA8BE0 /* Countries.json */; };
 		D07124D9264AB89B007DA5F8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124D8264AB89B007DA5F8 /* Coordinator.swift */; };
 		D07124DB264ABBF0007DA5F8 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124DA264ABBF0007DA5F8 /* MainCoordinator.swift */; };
+		D07124DD264AD163007DA5F8 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124DC264AD163007DA5F8 /* ServiceProvider.swift */; };
+		D07124DF264ADBDF007DA5F8 /* JSONParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */; };
+		D07124E1264BEECE007DA5F8 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E0264BEECE007DA5F8 /* DataFetcher.swift */; };
+		D07124E3264BEEDF007DA5F8 /* DataFetcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */; };
+		D07124E5264C1178007DA5F8 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E4264C1178007DA5F8 /* CustomViewController.swift */; };
+		D07124E8264C19C5007DA5F8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E7264C19C5007DA5F8 /* DateExtension.swift */; };
 		D07756EF26398D7C002D7195 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07756EE26398D7B002D7195 /* Then.swift */; };
 		D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CD4FBB2633452800CFF221 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +57,12 @@
 		D05D91A1263AFA2D00AA8BE0 /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
 		D07124D8264AB89B007DA5F8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D07124DA264ABBF0007DA5F8 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		D07124DC264AD163007DA5F8 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserProtocol.swift; sourceTree = "<group>"; };
+		D07124E0264BEECE007DA5F8 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherProtocol.swift; sourceTree = "<group>"; };
+		D07124E4264C1178007DA5F8 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		D07124E7264C19C5007DA5F8 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D07756EE26398D7B002D7195 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		D0CD4FBB2633452800CFF221 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveCompanionSnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +110,7 @@
 		D01AD57D2631902200577F91 /* diveCompanionSnapKit */ = {
 			isa = PBXGroup;
 			children = (
+				D07124E6264C1993007DA5F8 /* Extensions */,
 				D025D67F264527CD003DD401 /* Services */,
 				D025D67D2645274E003DD401 /* Utilities */,
 				D025D679264526C9003DD401 /* Features */,
@@ -146,6 +159,7 @@
 				D02560072641B2030001598B /* PlusPlus.swift */,
 				D07124D8264AB89B007DA5F8 /* Coordinator.swift */,
 				D07124DA264ABBF0007DA5F8 /* MainCoordinator.swift */,
+				D07124E4264C1178007DA5F8 /* CustomViewController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -163,11 +177,23 @@
 			isa = PBXGroup;
 			children = (
 				D05D919D263AE15000AA8BE0 /* Storage.swift */,
+				D07124DC264AD163007DA5F8 /* ServiceProvider.swift */,
+				D07124E0264BEECE007DA5F8 /* DataFetcher.swift */,
+				D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */,
 				D01AD5A02631C81900577F91 /* JsonParser.swift */,
+				D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */,
 				D01AD59F2631C81900577F91 /* DataParserError.swift */,
 				D07756EE26398D7B002D7195 /* Then.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		D07124E6264C1993007DA5F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D07124E7264C19C5007DA5F8 /* DateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E69F126B9E7484A9F0258665 /* Frameworks */ = {
@@ -292,18 +318,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07124DF264ADBDF007DA5F8 /* JSONParserProtocol.swift in Sources */,
 				D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */,
 				D01AD5832631902200577F91 /* ViewController.swift in Sources */,
 				D07756EF26398D7C002D7195 /* Then.swift in Sources */,
 				D07124D9264AB89B007DA5F8 /* Coordinator.swift in Sources */,
+				D07124E3264BEEDF007DA5F8 /* DataFetcherProtocol.swift in Sources */,
 				D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */,
 				D01512E3263BF73500BAC208 /* CountryTableCell.swift in Sources */,
+				D07124E1264BEECE007DA5F8 /* DataFetcher.swift in Sources */,
 				D02560082641B2030001598B /* PlusPlus.swift in Sources */,
 				D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */,
 				D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */,
 				D07124DB264ABBF0007DA5F8 /* MainCoordinator.swift in Sources */,
+				D07124DD264AD163007DA5F8 /* ServiceProvider.swift in Sources */,
 				D01AD5A22631C81900577F91 /* DataParserError.swift in Sources */,
+				D07124E5264C1178007DA5F8 /* CustomViewController.swift in Sources */,
 				D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */,
+				D07124E8264C19C5007DA5F8 /* DateExtension.swift in Sources */,
 				D01AD5A42631C81900577F91 /* diveSite.swift in Sources */,
 				D05D9199263AD31500AA8BE0 /* TableView.swift in Sources */,
 				D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */,

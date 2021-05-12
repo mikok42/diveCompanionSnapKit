@@ -13,40 +13,33 @@ final class ViewController: CustomViewController<MainView> {
     var countryIndex: Int? 
     private var diveSites: [DiveSite] = []
     private var siteArrayIterator = 0
-    private let parser = JSONParser.sharedParser
+    private var serviceProvider: ServiceProviderProtocol
+    private let parser: JSONParserProtocol
     weak var coordinator: MainCoordinator?
+    
     var url: String = " "
+    
+    init(serviceProvider: ServiceProviderProtocol) {
+        self.parser = serviceProvider.jsonParser
+        self.serviceProvider = serviceProvider
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.buttonDelegate = self
+        serviceProvider.dataFetcher.viewDelegate = self
         downloadSite(url: url)
     }
     
-    private func assignElements() {
-        let image =  diveSites[siteArrayIterator].pictureName
-        let title = diveSites[siteArrayIterator].name
-        let location = diveSites[siteArrayIterator].location
-        let description = diveSites[siteArrayIterator].description
-        
-        customView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
-    }
-    
     private func downloadSite(url: String) {
-        parser.readFromURL(fromURL: url) { [self] (data) in
-            do {
-                guard let data = data else { return }
-                let tempdiveSites: [DiveSite] = try parser.parse(jsonData: data)
-                diveSites = tempdiveSites
-                DispatchQueue.main.async {
-                    self.assignElements()
-                }
-            } catch {
-                print(error)
-                
-            }
-        }
+        serviceProvider.dataFetcher.fetchData(url: url)
     }
+
 }
 
 extension ViewController: ButtonDelegate {
@@ -60,8 +53,6 @@ extension ViewController: ButtonDelegate {
         }
         assignElements()
     }
-    
-    
     func prevButtonPressed() {
         guard !diveSites.isEmpty else { print("list empty"); return }
         if siteArrayIterator > 0 {
@@ -74,33 +65,29 @@ extension ViewController: ButtonDelegate {
     
     func homeButtonPressed() {
         coordinator?.navigationController.popViewController(animated: false)
-        //coordinator?.goToMainView()
     }
 }
 
+extension ViewController: ViewControllerDelegate{
+    func assignElements() {
+        let image =  diveSites[siteArrayIterator].pictureName
+        let title = diveSites[siteArrayIterator].name
+        let location = diveSites[siteArrayIterator].location
+        let description = diveSites[siteArrayIterator].description
+        
+        customView.populate(siteTitle: title, siteDescription: description, siteLocation: location, siteImageName: image)
+    }
+    
+    func setDiveSites(diveSites: [DiveSite]) {
+        self.diveSites = diveSites
+    }
+}
 //extension ViewController: ButtonDataSource {
 //    func homeButtonPressed() -> UIColor? {
 //        return [#colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1), #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)].randomElement()
 //    }
 //}
 
-class CustomViewController<CustomView: UIView>: UIViewController {
-    var customView: CustomView {
-        return view as! CustomView
-    }
-    
-    override func loadView() {
-        view = CustomView()
-    }
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 //
 //protocol HasCustomView {
