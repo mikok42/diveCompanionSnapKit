@@ -46,6 +46,29 @@ class MainView: UIView {
         $0.axis = .horizontal
         $0.spacing = 0
     }
+//
+//    private lazy var scrollView = UIScrollView().then {
+//        $0.bounces = true
+//        $0.isScrollEnabled = true
+//        $0.backgroundColor = .red
+//    }
+//
+    private lazy var textView = UITextView().then {
+        $0.isEditable = false
+        $0.isScrollEnabled = true
+        $0.isUserInteractionEnabled = true
+        $0.font = UIFont(name: Constants.fontName, size: 16)
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = superview?.backgroundColor
+        $0.bounces = true
+        
+    }
+//
+//    private lazy var contentViewContainer = UIView().then {
+//        $0.backgroundColor = .yellow
+//        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+//       // $0.contentMode = .center
+//    }
     
     private lazy var siteImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
@@ -61,13 +84,14 @@ class MainView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 
     }
-    
-    private lazy var siteDescriptionLabel = UILabel().then {
-        $0.font = UIFont(name: Constants.fontName, size: 16)
-        $0.numberOfLines = 0
-        $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-    }
-    
+//
+//    private lazy var siteDescriptionLabel = UILabel().then {
+//        $0.font = UIFont(name: Constants.fontName, size: 16)
+//        $0.numberOfLines = 0
+//        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+//        $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+//    }
+//
     private lazy var prevButton = UIButton().then {
         $0.setTitle("⬅️", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -105,7 +129,7 @@ class MainView: UIView {
         )
         siteTitleLabel.text = siteTitle
         siteLocationLabel.text = siteLocation
-        siteDescriptionLabel.text = siteDescription
+        textView.text = siteDescription
     }
     
     // MARK: Buttons
@@ -134,20 +158,32 @@ class MainView: UIView {
     
     // MARK: Private funcs
     private func addSubviews() {
-        [siteImageView, siteLocationLabel, siteDescriptionLabel, siteTitleLabel, prevButton, nextButton, homeButton, buttonStackView].forEach {
+        [buttonStackView, textView, siteTitleLabel, siteLocationLabel, siteImageView].forEach {
             addSubview($0)
         }
     }
     
     private func setupSubviews() {
         imageSetup()
-        descriptionSetup()
+//        setupScrollView()
+//        contentViewContainerSetup()
+        textViewSetup()
+//        descriptionSetup()
         locationSetup()
         titleSetup()
         setUpButtonView()
         prevButtonSetup()
         nextButtonSetup()
         homeButtonSetup()
+    }
+    
+    private func textViewSetup() {
+        textView.snp.makeConstraints {
+            $0.top.equalTo(siteLocationLabel.snp.bottom).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(siteTitleLabel.snp.leading)
+            $0.trailing.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
+            $0.bottom.equalTo(buttonStackView.snp.top).inset(-Constants.labelsDistance)
+        }
     }
     
     private func setUpButtonView() {
@@ -161,6 +197,28 @@ class MainView: UIView {
             $0.height.equalTo(38)
         }
     }
+//
+//    private func setupScrollView() {
+//        scrollView.addSubview(contentViewContainer)
+//        scrollView.snp.makeConstraints {
+//            $0.top.equalTo(siteImageView.snp.bottom)
+//            $0.bottom.equalTo(buttonStackView.snp.top)
+//            $0.leading.equalTo(snp.leading)
+//            $0.trailing.equalTo(snp.trailing)
+//        }
+//    }
+//
+//    private func contentViewContainerSetup() {
+//        [siteTitleLabel, siteLocationLabel, siteDescriptionLabel].forEach { contentViewContainer.addSubview($0) }
+//        contentViewContainer.snp.makeConstraints {
+//            $0.top.equalTo(scrollView.snp.top)
+//            $0.bottom.equalTo(scrollView.snp.bottom)
+//            $0.leading.equalTo(scrollView.snp.leading)
+//            $0.trailing.equalTo(scrollView.snp.trailing)
+//            $0.width.equalTo(scrollView.snp.width)
+//            $0.height.equalTo(scrollView.snp.height).priority(.low)
+//        }
+//    }
     
     private func prevButtonSetup() {
         prevButton.snp.makeConstraints {
@@ -168,7 +226,7 @@ class MainView: UIView {
             $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
-    
+
     private func nextButtonSetup() {
         nextButton.snp.makeConstraints {
             $0.leading.equalTo(prevButton.snp.trailing)
@@ -176,44 +234,43 @@ class MainView: UIView {
             $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
-    
+
     private func homeButtonSetup() {
         homeButton.snp.makeConstraints {
             $0.leading.equalTo(snp.leading)
             $0.width.equalTo(snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
-    
+
     private func imageSetup() {
         siteImageView.snp.makeConstraints {
             $0.top.equalTo(snp.top)
             $0.leading.equalTo(snp.leading)
             $0.trailing.equalTo(snp.trailing)
-            $0.height.lessThanOrEqualTo(snp.height).dividedBy(3)
+            $0.height.equalTo(snp.height).dividedBy(3)
         }
     }
     
     private func titleSetup() {
         siteTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
-            $0.topMargin.equalTo(siteImageView.snp_bottomMargin).inset(-Constants.labelsDistance)
+            $0.top.equalTo(siteImageView.snp.bottom)
         }
     }
     
     private func locationSetup() {
         siteLocationLabel.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
-            $0.topMargin.equalTo(siteTitleLabel.snp_bottomMargin).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(siteTitleLabel.snp.leading)
+            $0.top.equalTo(siteTitleLabel.snp.bottom).inset(-Constants.labelsDistance)
         }
     }
-    
-    private func descriptionSetup() {
-        siteDescriptionLabel.snp.makeConstraints {
-            $0.leading.equalTo(safeAreaLayoutGuide).inset(Constants.labelsMargins)
-            $0.topMargin.equalTo(siteLocationLabel.snp.bottom).inset(-Constants.labelsDistance)
-            $0.width.equalTo(snp.width).inset(30)
-            $0.bottomMargin.lessThanOrEqualTo(buttonStackView.snp_topMargin).inset(Constants.labelsDistance)
-        }
-    }
+//
+//    private func descriptionSetup() {
+//        siteDescriptionLabel.snp.makeConstraints {
+//            $0.leading.equalTo(textView.snp.leading).inset(Constants.labelsMargins)
+//            $0.top.equalTo(textView.snp.bottom).inset(-Constants.labelsDistance)
+//            $0.width.equalTo(textView.snp.width).inset(30)
+//        }
+//    }
 }
 
