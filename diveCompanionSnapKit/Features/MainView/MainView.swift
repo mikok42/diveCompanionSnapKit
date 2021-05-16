@@ -24,6 +24,7 @@ protocol ButtonDelegate: AnyObject {
 //    }
 //}
 
+
 class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
     //weak var buttonDataSource: ButtonDataSource?
@@ -237,8 +238,8 @@ class MainView: UIView {
 
     private func homeButtonSetup() {
         homeButton.snp.makeConstraints {
-            $0.leading.equalTo(snp.leading)
-            $0.width.equalTo(snp.width).dividedBy(buttonStackView.subviews.count)
+            $0.leading.equalTo(buttonStackView.snp.leading)
+            $0.width.equalTo(buttonStackView.snp.width).dividedBy(buttonStackView.subviews.count)
         }
     }
 

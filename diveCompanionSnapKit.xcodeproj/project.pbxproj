@@ -17,6 +17,7 @@
 		D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A02631C81900577F91 /* JsonParser.swift */; };
 		D01AD5A42631C81900577F91 /* diveSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5A12631C81900577F91 /* diveSite.swift */; };
 		D01AD5D52631FF1A00577F91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5D42631FF1A00577F91 /* MainView.swift */; };
+		D01E905D265151CD001296F4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E905C265151CD001296F4 /* UserSettings.swift */; };
 		D02560082641B2030001598B /* PlusPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02560072641B2030001598B /* PlusPlus.swift */; };
 		D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */; };
 		D05D9199263AD31500AA8BE0 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D9198263AD31500AA8BE0 /* TableView.swift */; };
@@ -50,6 +51,7 @@
 		D01AD5A02631C81900577F91 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		D01AD5A12631C81900577F91 /* diveSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diveSite.swift; sourceTree = "<group>"; };
 		D01AD5D42631FF1A00577F91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D01E905C265151CD001296F4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D02560072641B2030001598B /* PlusPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlus.swift; sourceTree = "<group>"; };
 		D05D9196263AD2CD00AA8BE0 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		D05D9198263AD31500AA8BE0 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				D07124DC264AD163007DA5F8 /* ServiceProvider.swift */,
 				D07124E0264BEECE007DA5F8 /* DataFetcher.swift */,
 				D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */,
+				D01E905C265151CD001296F4 /* UserSettings.swift */,
 				D01AD5A02631C81900577F91 /* JsonParser.swift */,
 				D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */,
 				D01AD59F2631C81900577F91 /* DataParserError.swift */,
@@ -339,6 +342,7 @@
 				D01AD5A22631C81900577F91 /* DataParserError.swift in Sources */,
 				D07124E5264C1178007DA5F8 /* CustomViewController.swift in Sources */,
 				D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */,
+				D01E905D265151CD001296F4 /* UserSettings.swift in Sources */,
 				D07124E8264C19C5007DA5F8 /* DateExtension.swift in Sources */,
 				D01AD5A42631C81900577F91 /* diveSite.swift in Sources */,
 				D05D9199263AD31500AA8BE0 /* TableView.swift in Sources */,

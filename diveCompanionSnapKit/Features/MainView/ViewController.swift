@@ -34,6 +34,13 @@ final class ViewController: CustomViewController<MainView> {
         customView.buttonDelegate = self
         serviceProvider.dataFetcher.viewDelegate = self
         downloadSite(url: url)
+        
+        print(serviceProvider.userSettings.loggedDives)
+        serviceProvider.userSettings.loggedDives = 10
+        print(serviceProvider.userSettings.loggedDives)
+        print(serviceProvider.userSettings.username)
+        serviceProvider.userSettings.username = "Miko"
+        print(serviceProvider.userSettings.username)
     }
     
     private func downloadSite(url: String) {

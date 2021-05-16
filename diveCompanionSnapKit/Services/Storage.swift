@@ -30,6 +30,8 @@ struct PropertyStorage<T> {
 enum StorageKeys: String {
     case key = "key"
     case name = "name"
+    case username = "username"
+    case loggedDives = "loggedDives"
 }
 
 struct Storage {
