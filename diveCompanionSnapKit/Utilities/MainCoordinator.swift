@@ -29,4 +29,14 @@ class MainCoordinator: Coordinator {
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
+    
+    func goToSignUpView() {
+        let viewController = SignUpViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    func goToSignInView() {
+        
+    }
 }

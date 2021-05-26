@@ -15,7 +15,6 @@ protocol ServiceProviderProtocol {
 
 class ServiceProvider: ServiceProviderProtocol {
     var userSettings: UserSettings
-    
     var jsonParser: JSONParserProtocol
     var dataFetcher: DataFetcherProtocol
     

@@ -14,13 +14,11 @@ final class ViewController: CustomViewController<MainView> {
     private var diveSites: [DiveSite] = []
     private var siteArrayIterator = 0
     private var serviceProvider: ServiceProviderProtocol
-    private let parser: JSONParserProtocol
     weak var coordinator: MainCoordinator?
     
     var url: String = " "
     
     init(serviceProvider: ServiceProviderProtocol) {
-        self.parser = serviceProvider.jsonParser
         self.serviceProvider = serviceProvider
         super.init()
     }
@@ -35,12 +33,12 @@ final class ViewController: CustomViewController<MainView> {
         serviceProvider.dataFetcher.viewDelegate = self
         downloadSite(url: url)
         
-        print(serviceProvider.userSettings.loggedDives)
+        print(serviceProvider.userSettings.loggedDives ?? "no logged dives")
         serviceProvider.userSettings.loggedDives = 10
-        print(serviceProvider.userSettings.loggedDives)
-        print(serviceProvider.userSettings.username)
+        print(serviceProvider.userSettings.loggedDives ?? "no logged dives")
+        print(serviceProvider.userSettings.username ?? "diver")
         serviceProvider.userSettings.username = "Miko"
-        print(serviceProvider.userSettings.username)
+        print(serviceProvider.userSettings.username ?? "diver")
     }
     
     private func downloadSite(url: String) {

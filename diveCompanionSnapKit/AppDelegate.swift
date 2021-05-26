@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.setNavigationBarHidden(true, animated: false)
         
         coordinator = MainCoordinator(navigationController: navigationController)
-        coordinator?.goToMainView()
+        coordinator?.goToSignUpView()
         
         window = UIWindow()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
+        FirebaseApp.configure()
         return true
     }
 }

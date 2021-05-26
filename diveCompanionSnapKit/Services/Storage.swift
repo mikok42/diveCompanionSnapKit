@@ -33,8 +33,3 @@ enum StorageKeys: String {
     case username = "username"
     case loggedDives = "loggedDives"
 }
-
-struct Storage {
-    @PropertyStorage(key: .name, defaultValue: " ")
-    static var name: String
-}
