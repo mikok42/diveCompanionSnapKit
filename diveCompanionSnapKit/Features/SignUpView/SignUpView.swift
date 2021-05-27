@@ -41,7 +41,7 @@ class SignUpView: UIView {
         $0.numberOfLines = 0
     }
     
-    private lazy var emailTextField = UITextField().then {
+    private lazy var emailTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
@@ -53,7 +53,7 @@ class SignUpView: UIView {
         $0.layer.cornerRadius = 10.0
     }
     
-    private lazy var usernameTextField = UITextField().then {
+    private lazy var usernameTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
@@ -65,7 +65,7 @@ class SignUpView: UIView {
         $0.layer.cornerRadius = 10.0
     }
     
-    private lazy var passwordTextField = UITextField().then {
+    private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
@@ -78,7 +78,7 @@ class SignUpView: UIView {
         $0.layer.cornerRadius = 10.0
     }
     
-    private lazy var genderTextField = UITextField().then {
+    private lazy var genderTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "gender", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
@@ -90,7 +90,7 @@ class SignUpView: UIView {
         $0.layer.cornerRadius = 10.0
     }
     
-    private lazy var skillLevelTextField = UITextField().then {
+    private lazy var skillLevelTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "skill level", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder

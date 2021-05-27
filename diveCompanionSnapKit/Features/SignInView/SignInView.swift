@@ -38,7 +38,7 @@ class SignInView: UIView {
         $0.numberOfLines = 0
     }
     
-    private lazy var emailTextField = UITextField().then {
+    private lazy var emailTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
@@ -50,7 +50,7 @@ class SignInView: UIView {
         $0.layer.cornerRadius = 10.0
     }
     
-    private lazy var passwordTextField = UITextField().then {
+    private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         $0.attributedPlaceholder = placeholder
