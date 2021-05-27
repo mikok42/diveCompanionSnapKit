@@ -72,6 +72,7 @@
 		D06DD96A265EB0A600C2DE76 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		D06DD96C265EB29000C2DE76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D06DD96E265FA51A00C2DE76 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D06DD970265FC18A00C2DE76 /* diveCompanionSnapKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = diveCompanionSnapKit.entitlements; sourceTree = "<group>"; };
 		D07124D8264AB89B007DA5F8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D07124DA264ABBF0007DA5F8 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		D07124DC264AD163007DA5F8 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		D01AD57D2631902200577F91 /* diveCompanionSnapKit */ = {
 			isa = PBXGroup;
 			children = (
+				D06DD970265FC18A00C2DE76 /* diveCompanionSnapKit.entitlements */,
 				D07124E6264C1993007DA5F8 /* Extensions */,
 				D025D67F264527CD003DD401 /* Services */,
 				D025D67D2645274E003DD401 /* Utilities */,
@@ -531,6 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = diveCompanionSnapKit/diveCompanionSnapKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PNR29ZCK6M;
 				INFOPLIST_FILE = diveCompanionSnapKit/Info.plist;
@@ -551,6 +554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = diveCompanionSnapKit/diveCompanionSnapKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PNR29ZCK6M;
 				INFOPLIST_FILE = diveCompanionSnapKit/Info.plist;

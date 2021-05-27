@@ -9,6 +9,11 @@
 //parametry w signupview
 //login
 //ładniej
+//Auth.auth().currentUser
+//Auth.auth().signOut()
+//Userserwis 55 - 74 => ładnie
+//offset textfielda
+
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
@@ -39,22 +44,32 @@ extension SignUpViewController: SignUpDelegate {
     }
     
     func signUpPressed(username: String?, email: String?, gender: String?, skillLevel: String?, password: String?) {
-        guard email != nil,
-              username != nil,
-              gender != nil,
-              skillLevel != nil,
-              password != nil
+        guard let email = email,
+              let username = username,
+              let gender = gender,
+              let skillLevel = skillLevel,
+              let password = password
         else {
-            showAlert(viewController: self, title: "fields empty", message: "Please fill out all fields")
+            showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-        Auth.auth().createUser(withEmail: email!, password: password!) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             guard error == nil else { print(error) ; return }
             do {
                 let fields = Userdata(username: username, email: email, password: password, uid: result!.user.uid, skillLevel: skillLevel, gender: gender)
                 self.fstore.collection("users").document(result!.user.uid).setData(try fields.asDictionary()) { error in
                     guard error == nil else { print(error) ; return }
-                    self.coordinator?.goToMainView()
+                    //self.coordinator?.goToMainView()
+                    Firestore.firestore().collection("users").document("\(result!.user.uid)").getDocument { snapshot, error in
+                        let data = snapshot?.data() ?? [:]
+                        do {
+                            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                            let user = try JSONDecoder().decode(Userdata.self, from: jsonData)
+                            print(user)
+                        } catch {
+                            print(error)
+                        }
+                    }
                 }
             } catch {
                 print(error)
@@ -62,6 +77,6 @@ extension SignUpViewController: SignUpDelegate {
             
         }
         serviceProvider.userSettings.hasSignedUp = true
-        serviceProvider.userSettings.username = username!
+        serviceProvider.userSettings.username = username
     }
 }

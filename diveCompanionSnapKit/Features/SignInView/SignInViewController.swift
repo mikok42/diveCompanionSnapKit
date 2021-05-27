@@ -33,27 +33,28 @@ extension SignInViewController: SignInDelegate{
         guard email != nil,
               password != nil
         else {
-            showAlert(viewController: self, title: "fields empty", message: "Please fill out all fields")
+            showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-              
-        Auth.auth().signIn(withEmail: email!, password: password!) { (result, error) in
+    
+        Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] (result, error) in
+            guard let self = self else { return }
             if let error = error as NSError? {
                 switch AuthErrorCode(rawValue: error.code) {
                 case .operationNotAllowed:
-                    self.showAlert(viewController: self, title: "error", message: "logging in via email is disabled")
+                    self.showAlert(title: "error", message: "logging in via email is disabled")
                     
                 case .userDisabled:
-                    self.showAlert(viewController: self, title: "error", message: "laccount disabled")
+                    self.showAlert(title: "error", message: "laccount disabled")
                     
                 case .wrongPassword:
-                    self.showAlert(viewController: self, title: "error", message: "lwrong password")
+                    self.showAlert(title: "error", message: "lwrong password")
                     
                 case .invalidEmail:
-                    self.showAlert(viewController: self, title: "error", message: "email doesnt exist")
+                    self.showAlert(title: "error", message: "email doesnt exist")
                     
                 default:
-                    self.showAlert(viewController: self, title: "error", message: error.localizedDescription)
+                    self.showAlert(title: "error", message: error.localizedDescription)
                 }
             } else {
                 self.coordinator?.goToMainView()

@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
             return true
-        }
-        else {
+        } else {
             coordinator?.goToSignInView()
             window = UIWindow()
             window?.rootViewController = navigationController

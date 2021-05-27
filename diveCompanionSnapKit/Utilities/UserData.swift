@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 
+
 struct Userdata: Codable {
     let username: String?
     let email: String?
@@ -16,6 +17,7 @@ struct Userdata: Codable {
     let skillLevel: String?
     let gender: String?
 }
+//FIRDocumentReference
 
 //extension DocumentSnapshot {
 //  func decoded<Type: Decodable>() throws -> Type {

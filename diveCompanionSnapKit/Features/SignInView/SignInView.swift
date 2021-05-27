@@ -57,6 +57,7 @@ class SignInView: UIView {
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
         $0.autocorrectionType = .no
         $0.autocapitalizationType = .none
+        $0.isSecureTextEntry = true
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
