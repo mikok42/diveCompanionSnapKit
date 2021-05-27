@@ -4,11 +4,7 @@
 //
 //  Created by Mikołaj Linczewski on 26/05/2021.
 //
-//userdata jako codable
-//servicy
-//parametry w signupview
-//login
-//ładniej
+
 //Auth.auth().currentUser
 //Auth.auth().signOut()
 //Userserwis 55 - 74 => ładnie
@@ -20,7 +16,6 @@ import FirebaseFirestore
 
 class SignUpViewController: CustomViewController<SignUpView> {
     weak var coordinator: MainCoordinator?
-    private let fstore = Firestore.firestore()
     private var serviceProvider: ServiceProviderProtocol
     
     init(serviceProvider: ServiceProviderProtocol) {
@@ -53,28 +48,8 @@ extension SignUpViewController: SignUpDelegate {
             showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            guard error == nil else { print(error) ; return }
-            do {
-                let fields = Userdata(username: username, email: email, password: password, uid: result!.user.uid, skillLevel: skillLevel, gender: gender)
-                self.fstore.collection("users").document(result!.user.uid).setData(try fields.asDictionary()) { error in
-                    guard error == nil else { print(error) ; return }
-                    //self.coordinator?.goToMainView()
-                    Firestore.firestore().collection("users").document("\(result!.user.uid)").getDocument { snapshot, error in
-                        let data = snapshot?.data() ?? [:]
-                        do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                            let user = try JSONDecoder().decode(Userdata.self, from: jsonData)
-                            print(user)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-            } catch {
-                print(error)
-            }
-            
+        serviceProvider.firebaseService.signUpUser(username: username, email: email, gender: gender, skillLevel: skillLevel, password: password) {
+            self.coordinator?.goToMainView()
         }
         serviceProvider.userSettings.hasSignedUp = true
         serviceProvider.userSettings.username = username

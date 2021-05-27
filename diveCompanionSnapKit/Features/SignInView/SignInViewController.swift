@@ -8,7 +8,11 @@
 import Foundation
 import FirebaseAuth
 
-class SignInViewController: CustomViewController<SignInView> {
+protocol AlertDelegate: AnyObject {
+    func showAlert(title: String, message: String)
+}
+
+class SignInViewController: CustomViewController<SignInView>, AlertDelegate {
     private var serviceProvider: ServiceProviderProtocol
     weak var coordinator: MainCoordinator?
     
@@ -30,35 +34,16 @@ extension SignInViewController: SignInDelegate{
     }
     
     func signInPressed(email: String?, password: String?) {
-        guard email != nil,
-              password != nil
+        guard let email = email,
+              let password = password
         else {
             showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-    
-        Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] (result, error) in
-            guard let self = self else { return }
-            if let error = error as NSError? {
-                switch AuthErrorCode(rawValue: error.code) {
-                case .operationNotAllowed:
-                    self.showAlert(title: "error", message: "logging in via email is disabled")
-                    
-                case .userDisabled:
-                    self.showAlert(title: "error", message: "laccount disabled")
-                    
-                case .wrongPassword:
-                    self.showAlert(title: "error", message: "lwrong password")
-                    
-                case .invalidEmail:
-                    self.showAlert(title: "error", message: "email doesnt exist")
-                    
-                default:
-                    self.showAlert(title: "error", message: error.localizedDescription)
-                }
-            } else {
-                self.coordinator?.goToMainView()
-            }
+        
+        serviceProvider.firebaseService.alertDelegate = self
+        serviceProvider.firebaseService.signInUser(email: email, password: password) {
+            self.coordinator?.goToMainView()
         }
     }
 }
