@@ -25,9 +25,14 @@ class CountryCell: UITableViewCell, Identifiable {
     }
     
     func configureCell(country: Country) {
+        let fullURL = Constants.imageRepo  + country.imageName + ".jpg?raw=true"
+        countryImageView.kf.setImage(
+            with: URL(string: fullURL),
+            placeholder: UIImage(named: "salemWreck"),
+            options: [.transition(.fade(1))]
+        )
         countryNameLabel.text = country.name
-        countryImageView.image = UIImage(named: country.imageName)
-        backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
+        backgroundColor = Constants.backgroundColour
         selectedBackgroundView = selectionColour
     }
     

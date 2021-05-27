@@ -9,9 +9,11 @@ import Foundation
 
 struct UserSettings {
     @PropertyStorage(key: .username, defaultValue: "diver")
-    var username: String?
+    var username: String
     
     @PropertyStorage(key: .loggedDives, defaultValue: 0)
-    var loggedDives: Int?
+    var loggedDives: Int
     
+    @PropertyStorage(key: .signedUp, defaultValue: false)
+    var hasSignedUp: Bool
 }

@@ -12,19 +12,33 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var coordinator: MainCoordinator?
+    var serviceProvider: ServiceProviderProtocol?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
         
-        coordinator = MainCoordinator(navigationController: navigationController)
-        coordinator?.goToSignUpView()
-        
-        window = UIWindow()
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
         FirebaseApp.configure()
-        return true
+        coordinator = MainCoordinator(navigationController: navigationController)
+        serviceProvider = ServiceProvider()
+        
+        let hasSignedUp = serviceProvider?.userSettings.hasSignedUp
+        
+        if hasSignedUp! {
+            coordinator?.goToMainView()
+            window = UIWindow()
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+            return true
+        }
+        else {
+            coordinator?.goToSignInView()
+            window = UIWindow()
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+            return true
+        }
+ 
     }
 }
 

@@ -9,7 +9,8 @@ import Foundation
 import SnapKit
 
 protocol SignUpDelegate: AnyObject {
-    func signUpPressed(fields: Userdata)
+    func signUpPressed(username: String?, email: String?, gender: String?, skillLevel: String?, password: String?)
+    func signInPressed()
 }
 
 class SignUpView: UIView {
@@ -27,36 +28,78 @@ class SignUpView: UIView {
     }
     
     var email: String? { emailTextField.text }
+    var username: String? { usernameTextField.text }
+    var password: String? { passwordTextField.text }
+    var gender: String? { genderTextField.text }
+    var skillLevel: String? { skillLevelTextField.text }
     
     private lazy var signUpLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
         $0.text = "Please sign up to use diveCompanion"
         $0.textAlignment = .center
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.numberOfLines = 0
     }
     
     private lazy var emailTextField = UITextField().then {
+        let placeholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        $0.attributedPlaceholder = placeholder
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
-        $0.placeholder = "email"
         $0.autocorrectionType = .no
         $0.autocapitalizationType = .none
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10.0
     }
     
     private lazy var usernameTextField = UITextField().then {
+        let placeholder = NSAttributedString(string: "username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        $0.attributedPlaceholder = placeholder
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
-        $0.placeholder = "username"
         $0.autocorrectionType = .no
         $0.autocapitalizationType = .none
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10.0
     }
     
     private lazy var passwordTextField = UITextField().then {
+        let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        $0.attributedPlaceholder = placeholder
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
-        $0.placeholder = "password"
+        $0.autocorrectionType = .no
+        $0.autocapitalizationType = .none
+        $0.isSecureTextEntry = true
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10.0
+    }
+    
+    private lazy var genderTextField = UITextField().then {
+        let placeholder = NSAttributedString(string: "gender", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        $0.attributedPlaceholder = placeholder
+        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
         $0.autocorrectionType = .no
         $0.autocapitalizationType = .none
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10.0
+    }
+    
+    private lazy var skillLevelTextField = UITextField().then {
+        let placeholder = NSAttributedString(string: "skill level", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        $0.attributedPlaceholder = placeholder
+        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
+        $0.autocorrectionType = .no
+        $0.autocapitalizationType = .none
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10.0
     }
     
     private lazy var signUpButton = UIButton().then {
@@ -64,13 +107,26 @@ class SignUpView: UIView {
         $0.setTitle("Sign up", for: .normal)
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .blue
+        $0.layer.cornerRadius = 10.0
         
-        $0.addTarget(self, action: #selector(buttonLetGoInside(_:)), for: .touchUpInside)
-        $0.addTarget(self, action: #selector(signUpLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(signUpLetGoInside(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
     }
     
-    @objc private func signUpLetGoOutside(_ sender: UIButton) {
+    private lazy var signInButton = UIButton().then {
+        $0.titleLabel?.font = UIFont(name: Constants.fontName, size: 20)
+        $0.setTitle("Sign in", for: .normal)
+        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.backgroundColor = .blue
+        $0.layer.cornerRadius = 10.0
+        
+        $0.addTarget(self, action: #selector(signInLetGoInside(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+    }
+    
+    @objc private func buttonLetGoOutside(_ sender: UIButton) {
         sender.alpha = 1
     }
     
@@ -78,18 +134,18 @@ class SignUpView: UIView {
         sender.alpha = 0.5
     }
     
-    @objc private func buttonLetGoInside(_ sender: UIButton) {
+    @objc private func signUpLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
-        let username = usernameTextField.text
-        let email = self.email
-        let password = passwordTextField.text
+        signUpDelegate?.signUpPressed(username: username, email: email, gender: gender, skillLevel: skillLevel, password: password)
+    }
     
-        let userdata = Userdata(username: username, email: email, password: password)
-        signUpDelegate?.signUpPressed(fields: userdata)
+    @objc private func signInLetGoInside(_ sender: UIButton) {
+        sender.alpha = 1
+        signUpDelegate?.signInPressed()
     }
     
     private func addSubviews() {
-        [signUpLabel, emailTextField, usernameTextField, passwordTextField, signUpButton].forEach {
+        [signUpLabel, emailTextField, usernameTextField, passwordTextField, signUpButton, genderTextField, skillLevelTextField, signInButton].forEach {
             addSubview($0)
         }
     }
@@ -100,6 +156,9 @@ class SignUpView: UIView {
         usernameTextFieldSetup()
         passwordTextFieldSetup()
         signUpButtonSetup()
+        genderTextFieldSetup()
+        skillLevelTextFieldSetup()
+        signInButtonSetup()
     }
     
     private func signUpLabelSetup() {
@@ -107,7 +166,6 @@ class SignUpView: UIView {
             $0.top.equalTo(snp.top).inset(50)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
             $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
-            $0.height.equalTo(30)
         }
     }
     
@@ -115,6 +173,7 @@ class SignUpView: UIView {
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(signUpLabel.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)
         }
     }
@@ -123,21 +182,50 @@ class SignUpView: UIView {
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
+            $0.height.equalTo(30)
+        }
+    }
+    
+    private func genderTextFieldSetup() {
+        genderTextField.snp.makeConstraints {
+            $0.top.equalTo(usernameTextField.snp.bottom).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
+            $0.height.equalTo(30)
+        }
+    }
+    
+    private func skillLevelTextFieldSetup() {
+        skillLevelTextField.snp.makeConstraints {
+            $0.top.equalTo(genderTextField.snp.bottom).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)
         }
     }
     
     private func passwordTextFieldSetup() {
         passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(usernameTextField.snp.bottom).inset(-Constants.labelsDistance)
+            $0.top.equalTo(skillLevelTextField.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
+            $0.height.equalTo(30)
+        }
+    }
+
+    private func signUpButtonSetup() {
+        signUpButton.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)
         }
     }
     
-    private func signUpButtonSetup() {
-        signUpButton.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).inset(-Constants.labelsDistance)
+    private func signInButtonSetup() {
+        signInButton.snp.makeConstraints {
+            $0.top.equalTo(signUpButton.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
             $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)

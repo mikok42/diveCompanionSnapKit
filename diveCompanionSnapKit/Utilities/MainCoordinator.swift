@@ -31,12 +31,14 @@ class MainCoordinator: Coordinator {
     }
     
     func goToSignUpView() {
-        let viewController = SignUpViewController()
+        let viewController = SignUpViewController(serviceProvider: serviceProvider)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
     
     func goToSignInView() {
-        
+        let viewController = SignInViewController(serviceProvider: serviceProvider)
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

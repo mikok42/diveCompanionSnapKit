@@ -22,6 +22,7 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
         customView.countryTable.registerCellClasses([CountryCell.self])
+        customView.tableViewButtonDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -49,16 +50,13 @@ extension TableViewController: UITableViewDataSource {
         cell.configureCell(country: countries[indexPath.row])
         return cell
     }
-    
 }
 
 extension TableViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let lowerCaseName = countries[safe: indexPath.row]?.name.lowercased() else { return }
         
         let url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
-        
         coordinator?.goToSiteView(url: url)
     }
 }
@@ -69,3 +67,12 @@ extension Collection {
     }
 }
     
+extension TableViewController: TableViewButtonsDelegate {
+    func logOutPressed() {
+        serviceProvider.userSettings.hasSignedUp = false
+        serviceProvider.userSettings.username = ""
+        coordinator?.goToSignInView()
+    }
+    
+    
+}

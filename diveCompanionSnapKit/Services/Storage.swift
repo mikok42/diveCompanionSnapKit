@@ -28,6 +28,7 @@ struct PropertyStorage<T> {
 }
 
 enum StorageKeys: String {
+    case signedUp = "signedUp"
     case key = "key"
     case name = "name"
     case username = "username"

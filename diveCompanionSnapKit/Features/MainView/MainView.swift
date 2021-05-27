@@ -95,7 +95,7 @@ class MainView: UIView {
 //
     private lazy var prevButton = UIButton().then {
         $0.setTitle("⬅️", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
         $0.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
@@ -104,7 +104,7 @@ class MainView: UIView {
     
     private lazy var nextButton = UIButton().then {
         $0.setTitle("➡️", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         $0.backgroundColor = #colorLiteral(red: 0.3617562354, green: 0.5512250662, blue: 0.6475913525, alpha: 1)
         $0.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
@@ -113,7 +113,7 @@ class MainView: UIView {
     
     private lazy var homeButton = UIButton().then {
         $0.setTitle("🏠", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         $0.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
         $0.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
@@ -166,10 +166,7 @@ class MainView: UIView {
     
     private func setupSubviews() {
         imageSetup()
-//        setupScrollView()
-//        contentViewContainerSetup()
         textViewSetup()
-//        descriptionSetup()
         locationSetup()
         titleSetup()
         setUpButtonView()
@@ -198,28 +195,6 @@ class MainView: UIView {
             $0.height.equalTo(38)
         }
     }
-//
-//    private func setupScrollView() {
-//        scrollView.addSubview(contentViewContainer)
-//        scrollView.snp.makeConstraints {
-//            $0.top.equalTo(siteImageView.snp.bottom)
-//            $0.bottom.equalTo(buttonStackView.snp.top)
-//            $0.leading.equalTo(snp.leading)
-//            $0.trailing.equalTo(snp.trailing)
-//        }
-//    }
-//
-//    private func contentViewContainerSetup() {
-//        [siteTitleLabel, siteLocationLabel, siteDescriptionLabel].forEach { contentViewContainer.addSubview($0) }
-//        contentViewContainer.snp.makeConstraints {
-//            $0.top.equalTo(scrollView.snp.top)
-//            $0.bottom.equalTo(scrollView.snp.bottom)
-//            $0.leading.equalTo(scrollView.snp.leading)
-//            $0.trailing.equalTo(scrollView.snp.trailing)
-//            $0.width.equalTo(scrollView.snp.width)
-//            $0.height.equalTo(scrollView.snp.height).priority(.low)
-//        }
-//    }
     
     private func prevButtonSetup() {
         prevButton.snp.makeConstraints {
@@ -265,13 +240,5 @@ class MainView: UIView {
             $0.top.equalTo(siteTitleLabel.snp.bottom).inset(-Constants.labelsDistance)
         }
     }
-//
-//    private func descriptionSetup() {
-//        siteDescriptionLabel.snp.makeConstraints {
-//            $0.leading.equalTo(textView.snp.leading).inset(Constants.labelsMargins)
-//            $0.top.equalTo(textView.snp.bottom).inset(-Constants.labelsDistance)
-//            $0.width.equalTo(textView.snp.width).inset(30)
-//        }
-//    }
 }
 
