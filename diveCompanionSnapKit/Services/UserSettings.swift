@@ -6,14 +6,24 @@
 //
 
 import Foundation
+import Firebase
 
-struct UserSettings {
-    @PropertyStorage(key: .username, defaultValue: "diver")
-    var username: String
+//struct UserSettings {
+//    
+//    
+//    
+//    func login(login: String, password: String) {
+//        
+//    }
+//    
+//}
     
-    @PropertyStorage(key: .loggedDives, defaultValue: 0)
-    var loggedDives: Int
-    
-    @PropertyStorage(key: .signedUp, defaultValue: false)
-    var hasSignedUp: Bool
-}
+//    @PropertyStorage(key: .username, defaultValue: "diver")
+//    var username: String
+//
+//    @PropertyStorage(key: .loggedDives, defaultValue: 0)
+//    var loggedDives: Int
+//
+//    @PropertyStorage(key: .signedUp, defaultValue: false)
+//    var hasSignedUp: Bool
+//}

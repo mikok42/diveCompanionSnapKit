@@ -23,6 +23,9 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
         customView.countryTable.dataSource = self
         customView.countryTable.registerCellClasses([CountryCell.self])
         customView.tableViewButtonDelegate = self
+        
+        
+        print("Karol: - \(serviceProvider.firebaseService.user?.gender)")
     }
     
     required init?(coder: NSCoder) {
@@ -69,8 +72,7 @@ extension Collection {
     
 extension TableViewController: TableViewButtonsDelegate {
     func logOutPressed() {
-        serviceProvider.userSettings.hasSignedUp = false
-        serviceProvider.userSettings.username = ""
+//        serviceProvider.userSettings.username = ""
         coordinator?.goToSignInView()
     }
     

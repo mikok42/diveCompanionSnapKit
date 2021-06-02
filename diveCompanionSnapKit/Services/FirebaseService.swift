@@ -10,51 +10,52 @@ import FirebaseFirestore
 import FirebaseAuth
 
 protocol FirebaseServiceProtocol {
-    var firestore: Firestore { get }
-    var alertDelegate: AlertDelegate? { get set}
+    var alertDelegate: AlertDelegate? { get set }
+    var user: Userdata? { get }
+    var hasSignedIn: Bool { get }
     
-    func signUpUser(username: String, email: String, gender: String, skillLevel: String, password: String,  completion: @escaping (()->()) )
-    
-    func signInUser(email: String, password: String, completion: @escaping ( ()->() ))
+    func signUpUser(user: Userdata, completion: @escaping (()-> Void))
+    func signInUser(email: String, password: String, completion: @escaping (()-> Void))
 }
 
 class FirebaseService: FirebaseServiceProtocol {
-    var firestore: Firestore
+
+    private let firestore = Firestore.firestore()
+    private let userRef = Firestore.firestore().collection("users")
+    private let auth = Auth.auth()
+    
+    
     weak var alertDelegate: AlertDelegate?
     
-    init() {
-        self.firestore = Firestore.firestore()
+    var user: Userdata?
+    
+    var hasSignedIn: Bool {
+        user != nil
     }
     
-    func signUpUser(username: String, email: String, gender: String, skillLevel: String, password: String, completion: @escaping (()->())) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            guard error == nil else { print(error) ; return }
-            completion()
+    func signUpUser(user: Userdata, completion: @escaping (()-> Void)) {
+        guard let email = user.email else { alertDelegate?.showAlert(title: "error", message: "email"); return }
+        guard let password = user.password else { alertDelegate?.showAlert(title: "password", message: "email"); return }
+        auth.createUser(withEmail: email, password: password) { [weak self] (result, error) in
+            guard let self = self else { return }
+            if let error = error { completion(); return }
+            
+            self.user = user
             do {
-                let fields = Userdata(username: username, email: email, password: password, uid: result!.user.uid, skillLevel: skillLevel, gender: gender)
-                self.firestore.collection("users").document(result!.user.uid).setData(try fields.asDictionary()) { error in
-                    guard error == nil else { print(error) ; return }
-                    Firestore.firestore().collection("users").document("\(result!.user.uid)").getDocument { snapshot, error in
-                        let data = snapshot?.data() ?? [:]
-                        do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                            let user = try JSONDecoder().decode(Userdata.self, from: jsonData)
-                            print(user)
-                        } catch {
-                            print(error)
-                        }
-                    }
+                self.userRef.document(result!.user.uid).setData(try user.asDictionary()) { error in
+                    guard error == nil else { self.alertDelegate?.showAlert(title: "password", message: "save"); return }
+                    completion()
                 }
             } catch {
                 print(error)
             }
-            
         }
     }
     
-    func signInUser(email: String, password: String, completion: @escaping ( ()->() )) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
+    func signInUser(email: String, password: String, completion: @escaping (()-> Void)) {
+        auth.signIn(withEmail: email, password: password) { [weak self] (result, error) in
             guard let self = self else { return }
+            
             if let error = error as NSError? {
                 switch AuthErrorCode(rawValue: error.code) {
                 case .operationNotAllowed:
@@ -73,10 +74,43 @@ class FirebaseService: FirebaseServiceProtocol {
                     self.alertDelegate?.showAlert(title: "error", message: error.localizedDescription)
                 }
             } else {
+                
+                #warning("popraw ten --> ! ")
+                self.userRef.document(result!.user.uid).getDocument { (document, error) in
+                    guard let document = document else { return }
+                    
+                    do {
+                        let user: Userdata = try document.decoded()
+                        self.user = user
+                    } catch {
+                        print("Karol: - \(error.localizedDescription)")
+                    }
+                    
+                }
                 completion()
             }
         }
     }
     
+    func logout() {
+        try? Auth.auth().signOut()
+        user = nil
+    }
     
+}
+
+extension DocumentSnapshot {
+    func decoded<Type: Decodable>() throws -> Type {
+        let jsonData = try JSONSerialization.data(withJSONObject: data() ?? [:], options: [])
+        let object = try JSONDecoder().decode(Type.self, from: jsonData)
+        return object
+    }
+}
+
+extension QuerySnapshot {
+    
+    func decoded<Type: Decodable>() throws -> [Type] {
+        let objects: [Type] = try documents.map({ try $0.decoded() })
+        return objects
+    }
 }

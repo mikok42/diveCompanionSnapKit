@@ -13,7 +13,6 @@ struct Userdata: Codable {
     let username: String?
     let email: String?
     let password: String?
-    let uid: String?
     let skillLevel: String?
     let gender: String?
 }

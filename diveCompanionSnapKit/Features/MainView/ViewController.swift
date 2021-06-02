@@ -33,8 +33,7 @@ final class ViewController: CustomViewController<MainView> {
         serviceProvider.dataFetcher.viewDelegate = self
         downloadSite(url: url)
         
-        print(serviceProvider.userSettings.hasSignedUp)
-        print(serviceProvider.userSettings.username)
+//        print(serviceProvider.userSettings.username)
     }
     
     private func downloadSite(url: String) {

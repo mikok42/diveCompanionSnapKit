@@ -48,10 +48,9 @@ extension SignUpViewController: SignUpDelegate {
             showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-        serviceProvider.firebaseService.signUpUser(username: username, email: email, gender: gender, skillLevel: skillLevel, password: password) {
+        let userdata = Userdata(username: username, email: email, password: password, skillLevel: skillLevel, gender: gender)
+        serviceProvider.firebaseService.signUpUser(user: userdata) {
             self.coordinator?.goToMainView()
         }
-        serviceProvider.userSettings.hasSignedUp = true
-        serviceProvider.userSettings.username = username
     }
 }

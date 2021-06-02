@@ -12,6 +12,8 @@ enum DataParserError: String, Error {
     case invalidName = "provided name cant be converted into a string"
     case fileDoesNotExist = "file does not exist"
     case unableToDecode = "the file cannot be decoded"
+    case cantFindEmail = "cos"
+    case cantFindPassword = "cos2"
 //    var message: String {
 //        switch self {
 //        case .wrongUrl:

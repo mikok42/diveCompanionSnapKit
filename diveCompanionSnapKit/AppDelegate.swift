@@ -22,21 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator = MainCoordinator(navigationController: navigationController)
         serviceProvider = ServiceProvider()
         
-        let hasSignedUp = serviceProvider?.userSettings.hasSignedUp
+        let hasSignedIn = serviceProvider?.firebaseService.hasSignedIn ?? false
+        hasSignedIn ? coordinator?.goToMainView() : coordinator?.goToSignInView()
         
-        if hasSignedUp! {
-            coordinator?.goToMainView()
-            window = UIWindow()
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
-            return true
-        } else {
-            coordinator?.goToSignInView()
-            window = UIWindow()
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
-            return true
-        }
+        window = UIWindow()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        return true
  
     }
 }
