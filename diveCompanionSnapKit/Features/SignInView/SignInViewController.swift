@@ -33,17 +33,20 @@ extension SignInViewController: SignInDelegate{
         coordinator?.goToSignUpView()
     }
     
-    func signInPressed(email: String?, password: String?) {
+    func signInPressed(email: String?, password: String?) -> Bool{
+        var success = false
         guard let email = email,
               let password = password
         else {
             showAlert(title: "fields empty", message: "Please fill out all fields")
-            return
+            return success
         }
         
         serviceProvider.firebaseService.alertDelegate = self
         serviceProvider.firebaseService.signInUser(email: email, password: password) {
             self.coordinator?.goToMainView()
+            success = true
         }
+        return success
     }
 }

@@ -19,13 +19,11 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
         self.serviceProvider = serviceProvider
         super.init()
         getCountryData()
+        
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
         customView.countryTable.registerCellClasses([CountryCell.self])
         customView.tableViewButtonDelegate = self
-        
-        
-        print("Karol: - \(serviceProvider.firebaseService.user?.gender)")
     }
     
     required init?(coder: NSCoder) {
