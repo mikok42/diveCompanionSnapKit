@@ -30,7 +30,10 @@ class SignInViewController: CustomViewController<SignInView>, AlertDelegate {
 
 extension SignInViewController: SignInDelegate{
     func signUpPressed() {
-        coordinator?.goToSignUpView()
+        customView.redoConstraint {
+            self.coordinator?.goToSignUpView()
+        }
+        
     }
     
     func signInPressed(email: String?, password: String?) {
@@ -43,8 +46,9 @@ extension SignInViewController: SignInDelegate{
         
         serviceProvider.firebaseService.alertDelegate = self
         serviceProvider.firebaseService.signInUser(email: email, password: password) {
-            self.coordinator?.goToMainView()
+            self.customView.redoConstraint {
+                self.coordinator?.goToMainView()
+            }
         }
-        customView.redoConstraint()
     }
 }

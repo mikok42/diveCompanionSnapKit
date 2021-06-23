@@ -104,7 +104,6 @@ class SignInView: UIView {
     @objc private func signUpLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
         signInDelegate?.signUpPressed()
-        redoConstraint()
     }
     
     private func addSubviews() {
@@ -165,24 +164,25 @@ class SignInView: UIView {
         }
     }
     
-    public func redoConstraint() {
-        print("Mikołaj: ")
+    public func redoConstraint(completion: @escaping () -> Void ) {
+        self.signInButtonTopConstraint?.update(inset: -1000)
         UIView.animate(withDuration: 1) {
-            self.signInButtonTopConstraint?.update(inset: -1000)
             self.layoutIfNeeded()
             self.endEditing(true)
+        } completion: { _ in
+            completion()
         }
     }
     
-    public func redoConstraint2() {
-        print("Mikołaj: ")
-        UIView.animate(withDuration: 10) {
-            self.signInButton.snp.remakeConstraints {
-                $0.top.equalTo(self.snp.bottom)
-            }
-            
+    public func redoConstraint2(completion: @escaping () -> Void ) {
+        self.signInButton.snp.remakeConstraints {
+            $0.top.equalTo(self.snp.bottom)
+        }
+        UIView.animate(withDuration: 1) {
             self.layoutIfNeeded()
             self.endEditing(true)
+        } completion: { _ in
+            completion()
         }
     }
 }
