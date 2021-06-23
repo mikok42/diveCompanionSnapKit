@@ -70,7 +70,6 @@ extension Collection {
     
 extension TableViewController: TableViewButtonsDelegate {
     func logOutPressed() {
-//        serviceProvider.userSettings.username = ""
         coordinator?.goToSignInView()
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import SnapKit
 
 protocol SignInDelegate: AnyObject {
-    func signInPressed(email: String?, password: String?) -> Bool
+    func signInPressed(email: String?, password: String?) 
     func signUpPressed()
 }
 
@@ -98,16 +98,13 @@ class SignInView: UIView {
     
     @objc private func signInLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
-        guard let success = signInDelegate?.signInPressed(email: email, password: password) else { return }
-        print(success)
-        if success {
-            redoConstraint()
-        }
+        signInDelegate?.signInPressed(email: email, password: password)
     }
     
     @objc private func signUpLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
         signInDelegate?.signUpPressed()
+        redoConstraint()
     }
     
     private func addSubviews() {
@@ -159,18 +156,21 @@ class SignInView: UIView {
         }
     }
     
-    private func redoConstraint() {
-        self.signInButtonTopConstraint?.update(inset: -1000)
-        UIView.animate(withDuration: 0.3) {
-            self.layoutIfNeeded()
-        }
-    }
     private func signUpButtonSetup() {
         signUpButton.snp.makeConstraints {
             $0.top.equalTo(signInButton.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
             $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)
+        }
+    }
+    
+    public func redoConstraint() {
+        print("Mikołaj: ")
+        UIView.animate(withDuration: 1) {
+            self.signInButtonTopConstraint?.update(inset: -1000)
+            self.layoutIfNeeded()
+            self.endEditing(true)
         }
     }
 }

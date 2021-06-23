@@ -39,14 +39,11 @@ extension SignUpViewController: SignUpDelegate {
     }
     
     func signUpPressed(username: String?, email: String?, gender: String?, skillLevel: String?, password: String?) {
-        guard let email = email,
-              let username = username,
-              let gender = gender,
-              let skillLevel = skillLevel,
-              let password = password
-        else {
-            showAlert(title: "fields empty", message: "Please fill out all fields")
-            return
+        [email, username, gender, skillLevel, password].forEach {
+            if $0?.isEmpty ?? true {
+                showAlert(title: "fields empty", message: "Please fill out all fields")
+                return
+            }
         }
         let userdata = Userdata(username: username, email: email, password: password, skillLevel: skillLevel, gender: gender)
         serviceProvider.firebaseService.signUpUser(user: userdata) {

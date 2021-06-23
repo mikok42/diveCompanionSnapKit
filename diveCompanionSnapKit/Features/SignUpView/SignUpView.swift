@@ -51,6 +51,7 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.text = nil
     }
     
     private lazy var usernameTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
@@ -63,6 +64,7 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.text = nil
     }
     
     private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
@@ -76,6 +78,8 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.text = nil
+        $0.text = nil
     }
     
     private lazy var genderTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
@@ -88,6 +92,7 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.text = nil
     }
     
     private lazy var skillLevelTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
@@ -100,6 +105,7 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.text = nil
     }
     
     private lazy var signUpButton = UIButton().then {

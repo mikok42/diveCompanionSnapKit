@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 protocol TableViewButtonsDelegate {
     func logOutPressed()
@@ -22,7 +23,6 @@ final class CountryTableViewContainer: UIView {
         $0.rowHeight = 70
     }
     
-    
     private lazy var logOutButton = UIButton().then {
         $0.backgroundColor = .blue
         $0.setTitle("Sign out", for: .normal)
@@ -35,13 +35,44 @@ final class CountryTableViewContainer: UIView {
     
     override func layoutSubviews() {
         self.backgroundColor = Constants.backgroundColour
+        self.countryTable.alpha = 0
+        self.logOutButton.alpha = 0
         addSubviews()
         setupSubview()
+        fadeIn()
     }
     
     private func addSubviews() {
         addSubview(countryTable)
         addSubview(logOutButton)
+    }
+    
+    private func redoConstraint() {
+        logOutButton.snp.removeConstraints()
+        countryTable.snp.removeConstraints()
+        
+        logOutButton.snp.remakeConstraints {
+            $0.top.equalTo(snp.bottom)
+        }
+        
+        countryTable.snp.remakeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(38)
+        }
+        self.layoutIfNeeded()
+    }
+    
+    private func fadeIn() {
+        UIView.animate(withDuration: 0.5) {
+            self.countryTable.alpha = 1
+            self.logOutButton.alpha = 1
+        }
+    }
+    
+    private func fadeOut() {
+        UIView.animate(withDuration: 0.5) {
+            self.countryTable.alpha = 0
+            self.logOutButton.alpha = 0
+        }
     }
     
     private func setupSubview() {
@@ -70,7 +101,11 @@ final class CountryTableViewContainer: UIView {
     
     @objc private func buttonLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
-        tableViewButtonDelegate?.logOutPressed()
+        //redoConstraint()
+        fadeOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tableViewButtonDelegate?.logOutPressed()
+        }
     }
 }
 
