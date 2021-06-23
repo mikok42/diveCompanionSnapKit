@@ -173,4 +173,16 @@ class SignInView: UIView {
             self.endEditing(true)
         }
     }
+    
+    public func redoConstraint2() {
+        print("Mikołaj: ")
+        UIView.animate(withDuration: 10) {
+            self.signInButton.snp.remakeConstraints {
+                $0.top.equalTo(self.snp.bottom)
+            }
+            
+            self.layoutIfNeeded()
+            self.endEditing(true)
+        }
+    }
 }

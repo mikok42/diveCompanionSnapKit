@@ -40,10 +40,11 @@ extension SignInViewController: SignInDelegate{
             showAlert(title: "fields empty", message: "Please fill out all fields")
             return
         }
-        self.customView.redoConstraint()
+        
         serviceProvider.firebaseService.alertDelegate = self
         serviceProvider.firebaseService.signInUser(email: email, password: password) {
             self.coordinator?.goToMainView()
         }
+        customView.redoConstraint()
     }
 }
