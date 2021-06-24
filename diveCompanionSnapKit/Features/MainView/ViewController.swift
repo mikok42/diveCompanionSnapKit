@@ -32,6 +32,7 @@ final class ViewController: CustomViewController<MainView> {
         customView.buttonDelegate = self
         serviceProvider.dataFetcher.viewDelegate = self
         downloadSite(url: url)
+        customView.fadeIn(duration: 0.5)
         
 //        print(serviceProvider.userSettings.username)
     }
@@ -52,6 +53,8 @@ extension ViewController: ButtonDelegate {
             siteArrayIterator = 0
         }
         assignElements()
+        customView.fadeOut(duration: 0.4)
+        customView.fadeIn(duration: 0.4)
     }
     func prevButtonPressed() {
         guard !diveSites.isEmpty else { print("list empty"); return }
@@ -61,10 +64,12 @@ extension ViewController: ButtonDelegate {
             siteArrayIterator = diveSites.count - 1
         }
         assignElements()
+        customView.fadeOut(duration: 0.4)
+        customView.fadeIn(duration: 0.4)
     }
     
     func homeButtonPressed() {
-        coordinator?.navigationController.popViewController(animated: false)
+        self.coordinator?.goToMainView()
     }
 }
 

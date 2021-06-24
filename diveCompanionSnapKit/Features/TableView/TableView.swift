@@ -19,11 +19,13 @@ final class CountryTableViewContainer: UIView {
     var tableViewButtonDelegate: TableViewButtonsDelegate?
     
     var countryTable = UITableView().then {
+        $0.alpha = 0
         $0.backgroundColor = Constants.backgroundColour
         $0.rowHeight = 70
     }
     
     private lazy var logOutButton = UIButton().then {
+        $0.alpha = 0
         $0.backgroundColor = .blue
         $0.setTitle("Sign out", for: .normal)
         $0.titleLabel?.font = UIFont(name: Constants.fontName, size: 20)
@@ -35,11 +37,9 @@ final class CountryTableViewContainer: UIView {
     
     override func layoutSubviews() {
         self.backgroundColor = Constants.backgroundColour
-        self.countryTable.alpha = 0
-        self.logOutButton.alpha = 0
         addSubviews()
         setupSubview()
-        fadeIn()
+        fadeIn(viewsToAnimate: [countryTable, logOutButton])
     }
     
     private func addSubviews() {
@@ -48,9 +48,6 @@ final class CountryTableViewContainer: UIView {
     }
     
     private func redoConstraint() {
-        logOutButton.snp.removeConstraints()
-        countryTable.snp.removeConstraints()
-        
         logOutButton.snp.remakeConstraints {
             $0.top.equalTo(snp.bottom)
         }
@@ -61,18 +58,12 @@ final class CountryTableViewContainer: UIView {
         self.layoutIfNeeded()
     }
     
-    private func fadeIn() {
-        UIView.animate(withDuration: 0.5) {
-            self.countryTable.alpha = 1
-            self.logOutButton.alpha = 1
-        }
+    public func fadeIn(_ completion: (() -> Void)? = nil) {
+        super.fadeIn(viewsToAnimate: [countryTable, logOutButton])
     }
-    
-    private func fadeOut() {
-        UIView.animate(withDuration: 0.5) {
-            self.countryTable.alpha = 0
-            self.logOutButton.alpha = 0
-        }
+
+    public func fadeOut(_ completion: (() -> Void)? = nil) {
+        super.fadeIn(viewsToAnimate: [countryTable, logOutButton])
     }
     
     private func setupSubview() {
@@ -101,8 +92,7 @@ final class CountryTableViewContainer: UIView {
     
     @objc private func buttonLetGoInside(_ sender: UIButton) {
         sender.alpha = 1
-        //redoConstraint()
-        fadeOut()
+        fadeOut(viewsToAnimate: [countryTable, logOutButton])
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tableViewButtonDelegate?.logOutPressed()
         }

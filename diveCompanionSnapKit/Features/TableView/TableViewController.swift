@@ -58,7 +58,10 @@ extension TableViewController: UITableViewDelegate {
         guard let lowerCaseName = countries[safe: indexPath.row]?.name.lowercased() else { return }
         
         let url = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/" + lowerCaseName + "SiteData.json"
-        coordinator?.goToSiteView(url: url)
+        self.coordinator?.goToSiteView(url: url)
+        customView.fadeOut() {
+            
+        }
     }
 }
 

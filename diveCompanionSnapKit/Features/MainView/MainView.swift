@@ -27,13 +27,14 @@ protocol ButtonDelegate: AnyObject {
 
 class MainView: UIView {
     weak var buttonDelegate: ButtonDelegate?
-    //weak var buttonDataSource: ButtonDataSource?
     
     init() {
         super.init(frame: .zero)
         backgroundColor = #colorLiteral(red: 0.5125905286, green: 1, blue: 0.9507776416, alpha: 1)
         addSubviews()
         setupSubviews()
+        addGestures()
+        fadeIn(duration: 0.5)
     }
     
     required init?(coder: NSCoder) {
@@ -46,14 +47,9 @@ class MainView: UIView {
         $0.alignment = .fill
         $0.axis = .horizontal
         $0.spacing = 0
+        $0.alpha = 0
     }
-//
-//    private lazy var scrollView = UIScrollView().then {
-//        $0.bounces = true
-//        $0.isScrollEnabled = true
-//        $0.backgroundColor = .red
-//    }
-//
+
     private lazy var textView = UITextView().then {
         $0.isEditable = false
         $0.isScrollEnabled = true
@@ -62,37 +58,27 @@ class MainView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = superview?.backgroundColor
         $0.bounces = true
-        
+        $0.alpha = 0
     }
-//
-//    private lazy var contentViewContainer = UIView().then {
-//        $0.backgroundColor = .yellow
-//        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-//       // $0.contentMode = .center
-//    }
     
     private lazy var siteImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
+        $0.alpha = 0
     }
     
     private lazy var siteTitleLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.alpha = 0
     }
     
     private lazy var siteLocationLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 17)
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        $0.alpha = 0
 
     }
-//
-//    private lazy var siteDescriptionLabel = UILabel().then {
-//        $0.font = UIFont(name: Constants.fontName, size: 16)
-//        $0.numberOfLines = 0
-//        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-//        $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-//    }
-//
+
     private lazy var prevButton = UIButton().then {
         $0.setTitle("⬅️", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
@@ -100,6 +86,7 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(prevButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+        $0.alpha = 0
     }
     
     private lazy var nextButton = UIButton().then {
@@ -109,6 +96,7 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(nextButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+        $0.alpha = 0
     }
     
     private lazy var homeButton = UIButton().then {
@@ -118,7 +106,24 @@ class MainView: UIView {
         $0.addTarget(self, action: #selector(homeButtonLetGo(_:)), for: .touchUpInside)
         $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+        $0.alpha = 0
     }
+    
+    private lazy var leftSwipe = UISwipeGestureRecognizer().then {
+        $0.direction = .right
+        $0.addTarget(self, action: #selector(swipeLeft(_:)))
+    }
+    
+    private lazy var upSwipe = UISwipeGestureRecognizer().then {
+        $0.direction = .down
+        $0.addTarget(self, action: #selector(swipeUp(_:)))
+    }
+    
+    private lazy var rightSwipe = UISwipeGestureRecognizer().then {
+        $0.direction = .left
+        $0.addTarget(self, action: #selector(swipeRight(_:)))
+    }
+
     
     // MARK: Public funcs
     func populate(siteTitle: String, siteDescription: String, siteLocation: String, siteImageName: String) {
@@ -131,6 +136,20 @@ class MainView: UIView {
         siteTitleLabel.text = siteTitle
         siteLocationLabel.text = siteLocation
         textView.text = siteDescription
+    }
+    
+    func fadeIn(duration: Double, _ completion: (() -> Void)? = nil) {
+        super.fadeIn(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView], duration: duration) {
+            guard let extraAction = completion else { return }
+            extraAction()
+        }
+    }
+    
+    func fadeOut(duration: Double, _ completion: (() -> Void)? = nil) {
+        super.fadeOut(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView], duration: duration) {
+            guard let extraAction = completion else { return }
+            extraAction()
+        }
     }
     
     // MARK: Buttons
@@ -157,11 +176,33 @@ class MainView: UIView {
         buttonDelegate?.homeButtonPressed()
     }
     
+    @objc private func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            buttonDelegate?.nextButtonPressed()
+        }
+    }
+    
+    @objc private func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            buttonDelegate?.prevButtonPressed()
+        }
+    }
+    
+    @objc private func swipeUp(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            buttonDelegate?.homeButtonPressed()
+        }
+    }
+    
     // MARK: Private funcs
     private func addSubviews() {
         [buttonStackView, textView, siteTitleLabel, siteLocationLabel, siteImageView].forEach {
             addSubview($0)
         }
+    }
+    
+    private func addGestures() {
+        [leftSwipe, rightSwipe, upSwipe].forEach { addGestureRecognizer($0) }
     }
     
     private func setupSubviews() {
@@ -185,9 +226,7 @@ class MainView: UIView {
     }
     
     private func setUpButtonView() {
-        buttonStackView.addSubview(prevButton)
-        buttonStackView.addSubview(nextButton)
-        buttonStackView.addSubview(homeButton)
+        [prevButton, nextButton, homeButton].forEach { buttonStackView.addSubview($0) }
         buttonStackView.snp.makeConstraints {
             $0.bottom.equalTo(snp.bottom).inset(20)
             $0.leading.equalTo(snp.leading)
