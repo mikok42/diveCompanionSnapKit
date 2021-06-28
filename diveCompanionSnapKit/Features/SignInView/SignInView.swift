@@ -5,6 +5,17 @@
 //  Created by Mikołaj Linczewski on 26/05/2021.
 //
 
+//UiPickerView
+//adapter
+
+//ikonka do hasla
+
+//collection i scroll view
+
+//profil użytkownika
+//zdjęcir użytkownika
+//uiimagepickercontroller
+
 import Foundation
 import SnapKit
 
@@ -49,6 +60,7 @@ class SignInView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.keyboardType = .emailAddress
     }
     
     private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
@@ -176,7 +188,11 @@ class SignInView: UIView {
     
     public func redoConstraint2(completion: @escaping () -> Void ) {
         self.signInButton.snp.remakeConstraints {
+            $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.top.equalTo(self.snp.bottom)
+            $0.height.equalTo(30)
+
         }
         UIView.animate(withDuration: 1) {
             self.layoutIfNeeded()

@@ -98,7 +98,7 @@ final class CountryTableViewContainer: UIView {
         }
     }
 }
-
+//do osobnego plliku
 extension UITableView {
     func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T where T: Identifiable {
         guard let cell = dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T else { fatalError("Couldn't dequeue cell with id:  \(T.identifier)") }

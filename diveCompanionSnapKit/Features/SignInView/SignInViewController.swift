@@ -30,7 +30,8 @@ class SignInViewController: CustomViewController<SignInView>, AlertDelegate {
 
 extension SignInViewController: SignInDelegate{
     func signUpPressed() {
-        customView.redoConstraint {
+        customView.redoConstraint2 { [weak self] in
+            guard let self = self else { return }
             self.coordinator?.goToSignUpView()
         }
         

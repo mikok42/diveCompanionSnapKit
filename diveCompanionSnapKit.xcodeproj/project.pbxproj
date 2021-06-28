@@ -41,6 +41,8 @@
 		D07124E8264C19C5007DA5F8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E7264C19C5007DA5F8 /* DateExtension.swift */; };
 		D07124EA264C2B23007DA5F8 /* DiveDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07124E9264C2B23007DA5F8 /* DiveDataProtocol.swift */; };
 		D07756EF26398D7C002D7195 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07756EE26398D7B002D7195 /* Then.swift */; };
+		D09C78F0268A167600AF765F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78EF268A167600AF765F /* Gender.swift */; };
+		D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78F1268A30AA00AF765F /* CustomEnum.swift */; };
 		D0A5C7D12684AEEC0088344A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A5C7D02684AEEC0088344A /* Animations.swift */; };
 		D0A603C926600314005699E1 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603C826600314005699E1 /* FirebaseService.swift */; };
 		D0A603CB26600FC9005699E1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603CA26600FC9005699E1 /* CustomTextField.swift */; };
@@ -86,6 +88,8 @@
 		D07124E7264C19C5007DA5F8 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D07124E9264C2B23007DA5F8 /* DiveDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveDataProtocol.swift; sourceTree = "<group>"; };
 		D07756EE26398D7B002D7195 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		D09C78EF268A167600AF765F /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		D09C78F1268A30AA00AF765F /* CustomEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEnum.swift; sourceTree = "<group>"; };
 		D0A5C7D02684AEEC0088344A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		D0A603C826600314005699E1 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		D0A603CA26600FC9005699E1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			children = (
 				D0CD4FBB2633452800CFF221 /* Constants.swift */,
 				D02560072641B2030001598B /* PlusPlus.swift */,
+				D09C78EF268A167600AF765F /* Gender.swift */,
 				D07124D8264AB89B007DA5F8 /* Coordinator.swift */,
 				D07124DA264ABBF0007DA5F8 /* MainCoordinator.swift */,
 				D07124E4264C1178007DA5F8 /* CustomViewController.swift */,
@@ -216,6 +221,7 @@
 				D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */,
 				D0A603C826600314005699E1 /* FirebaseService.swift */,
 				D01E905C265151CD001296F4 /* UserSettings.swift */,
+				D09C78F1268A30AA00AF765F /* CustomEnum.swift */,
 				D01AD5A02631C81900577F91 /* JsonParser.swift */,
 				D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */,
 				D01AD59F2631C81900577F91 /* DataParserError.swift */,
@@ -386,9 +392,11 @@
 				D06DD969265EAFE600C2DE76 /* UserData.swift in Sources */,
 				D07124E1264BEECE007DA5F8 /* DataFetcher.swift in Sources */,
 				D06DD96B265EB0A600C2DE76 /* AlertController.swift in Sources */,
+				D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */,
 				D02560082641B2030001598B /* PlusPlus.swift in Sources */,
 				D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */,
 				D04F920C265EA8E8001F7267 /* SignInView.swift in Sources */,
+				D09C78F0268A167600AF765F /* Gender.swift in Sources */,
 				D0A603C926600314005699E1 /* FirebaseService.swift in Sources */,
 				D01AD5A32631C81900577F91 /* JsonParser.swift in Sources */,
 				D07124DB264ABBF0007DA5F8 /* MainCoordinator.swift in Sources */,

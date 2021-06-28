@@ -16,6 +16,21 @@ protocol SignUpDelegate: AnyObject {
 class SignUpView: UIView {
     weak var signUpDelegate: SignUpDelegate?
     
+    var genderPickerDelegate: UIPickerViewDelegate? {
+        get { genderPickerView.delegate }
+        set { genderPickerView.delegate = newValue }
+    }
+    
+    var genderPickerDataSource: UIPickerViewDataSource? {
+        get { genderPickerView.dataSource }
+        set { genderPickerView.dataSource = newValue }
+    }
+    
+    var genderTextFieldContents: String? {
+        get { genderTextField.text }
+        set { genderTextField.text = newValue }
+    }
+
     init() {
         super.init(frame: .zero)
         backgroundColor = Constants.backgroundColour
@@ -82,6 +97,10 @@ class SignUpView: UIView {
         $0.text = nil
     }
     
+    private lazy var genderPickerView = UIPickerView().then {
+        $0.isHidden = true
+    }
+    
     private lazy var genderTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
         let placeholder = NSAttributedString(string: "gender", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
@@ -92,6 +111,7 @@ class SignUpView: UIView {
         $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10.0
+        $0.inputView = genderPickerView
         $0.text = nil
     }
     
@@ -132,6 +152,14 @@ class SignUpView: UIView {
         $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
     }
     
+    public func hideGenderPicker() {
+        self.genderTextField.resignFirstResponder()
+    }
+    
+    public func reloadGenderPickerData() {
+        genderPickerView.reloadAllComponents()
+    }
+    
     @objc private func buttonLetGoOutside(_ sender: UIButton) {
         sender.alpha = 1
     }
@@ -151,7 +179,7 @@ class SignUpView: UIView {
     }
     
     private func addSubviews() {
-        [signUpLabel, emailTextField, usernameTextField, passwordTextField, signUpButton, genderTextField, skillLevelTextField, signInButton].forEach {
+        [signUpLabel, emailTextField, usernameTextField, passwordTextField, signUpButton, genderTextField, skillLevelTextField, signInButton, genderPickerView].forEach {
             addSubview($0)
         }
     }
@@ -232,6 +260,15 @@ class SignUpView: UIView {
     private func signInButtonSetup() {
         signInButton.snp.makeConstraints {
             $0.top.equalTo(signUpButton.snp.bottom).inset(-Constants.labelsDistance)
+            $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
+            $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
+            $0.height.equalTo(30)
+        }
+    }
+    
+    private func genderPickerSetup() {
+        genderPickerView.snp.makeConstraints {
+            $0.top.equalTo(usernameTextField.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
             $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
             $0.height.equalTo(30)

@@ -17,9 +17,11 @@ import FirebaseFirestore
 class SignUpViewController: CustomViewController<SignUpView> {
     weak var coordinator: MainCoordinator?
     private var serviceProvider: ServiceProviderProtocol
+    private var genders: [Gender]
     
     init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
+        self.genders = Gender.allCases
         super.init()
     }
     
@@ -30,6 +32,9 @@ class SignUpViewController: CustomViewController<SignUpView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.signUpDelegate = self
+        customView.genderPickerDataSource = self
+        customView.genderPickerDelegate = self
+        customView.reloadGenderPickerData()
     }
 }
 
@@ -50,4 +55,27 @@ extension SignUpViewController: SignUpDelegate {
             self.coordinator?.goToMainView()
         }
     }
+}
+
+extension SignUpViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        customView.hideGenderPicker()
+        customView.genderTextFieldContents = genders[row].rawValue
+    }
+}
+
+extension SignUpViewController: UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        customView.reloadGenderPickerData()
+        return self.genders[row].rawValue
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Gender.allCases.count
+    }
+
 }

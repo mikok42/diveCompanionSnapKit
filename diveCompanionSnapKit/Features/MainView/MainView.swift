@@ -140,15 +140,13 @@ class MainView: UIView {
     
     func fadeIn(duration: Double, _ completion: (() -> Void)? = nil) {
         super.fadeIn(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView], duration: duration) {
-            guard let extraAction = completion else { return }
-            extraAction()
+            completion?()
         }
     }
     
     func fadeOut(duration: Double, _ completion: (() -> Void)? = nil) {
         super.fadeOut(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView], duration: duration) {
-            guard let extraAction = completion else { return }
-            extraAction()
+            completion?()
         }
     }
     
