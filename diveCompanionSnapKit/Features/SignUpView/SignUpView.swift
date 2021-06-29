@@ -30,7 +30,12 @@ class SignUpView: UIView {
         get { genderTextField.text }
         set { genderTextField.text = newValue }
     }
-
+    
+    var genderTextFieldDelegate: UITextFieldDelegate? {
+        get { genderTextField.delegate }
+        set { genderTextField.delegate = newValue }
+    }
+    
     init() {
         super.init(frame: .zero)
         backgroundColor = Constants.backgroundColour
@@ -153,7 +158,11 @@ class SignUpView: UIView {
     }
     
     public func hideGenderPicker() {
-        self.genderTextField.resignFirstResponder()
+        genderTextField.resignFirstResponder()
+    }
+    
+    public func showGenderPicker() {
+        genderPickerView.isHidden = false
     }
     
     public func reloadGenderPickerData() {
@@ -193,6 +202,7 @@ class SignUpView: UIView {
         genderTextFieldSetup()
         skillLevelTextFieldSetup()
         signInButtonSetup()
+        genderPickerSetup()
     }
     
     private func signUpLabelSetup() {
@@ -268,10 +278,9 @@ class SignUpView: UIView {
     
     private func genderPickerSetup() {
         genderPickerView.snp.makeConstraints {
-            $0.top.equalTo(usernameTextField.snp.bottom).inset(-Constants.labelsDistance)
             $0.leading.equalTo(snp.leading).inset(Constants.labelsDistance)
             $0.trailing.equalTo(snp.trailing).inset(Constants.labelsDistance)
-            $0.height.equalTo(30)
+            $0.bottom.equalTo(snp.bottom)
         }
     }
 }

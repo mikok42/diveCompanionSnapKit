@@ -34,6 +34,7 @@ class SignUpViewController: CustomViewController<SignUpView> {
         customView.signUpDelegate = self
         customView.genderPickerDataSource = self
         customView.genderPickerDelegate = self
+        customView.genderTextFieldDelegate = self
         customView.reloadGenderPickerData()
     }
 }
@@ -66,7 +67,6 @@ extension SignUpViewController: UIPickerViewDelegate {
 
 extension SignUpViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        customView.reloadGenderPickerData()
         return self.genders[row].rawValue
     }
     
@@ -77,5 +77,10 @@ extension SignUpViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return Gender.allCases.count
     }
+}
 
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        customView.showGenderPicker()
+    }
 }
