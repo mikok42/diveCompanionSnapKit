@@ -46,6 +46,7 @@
 		D08FD9ED268B28990084A23D /* ViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9EC268B28990084A23D /* ViewsProtocol.swift */; };
 		D08FD9EF268B6B760084A23D /* PasswordFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */; };
 		D08FD9F1268B75670084A23D /* BoolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9F0268B75670084A23D /* BoolExtension.swift */; };
+		D08FD9F3268B76830084A23D /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9F2268B76830084A23D /* IntExtension.swift */; };
 		D09C78F0268A167600AF765F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78EF268A167600AF765F /* Gender.swift */; };
 		D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78F1268A30AA00AF765F /* CustomEnum.swift */; };
 		D0A5C7D12684AEEC0088344A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A5C7D02684AEEC0088344A /* Animations.swift */; };
@@ -98,6 +99,7 @@
 		D08FD9EC268B28990084A23D /* ViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsProtocol.swift; sourceTree = "<group>"; };
 		D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldWithIcon.swift; sourceTree = "<group>"; };
 		D08FD9F0268B75670084A23D /* BoolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtension.swift; sourceTree = "<group>"; };
+		D08FD9F2268B76830084A23D /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		D09C78EF268A167600AF765F /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		D09C78F1268A30AA00AF765F /* CustomEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEnum.swift; sourceTree = "<group>"; };
 		D0A5C7D02684AEEC0088344A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			children = (
 				D07124E7264C19C5007DA5F8 /* DateExtension.swift */,
 				D08FD9F0268B75670084A23D /* BoolExtension.swift */,
+				D08FD9F2268B76830084A23D /* IntExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D08FD9F3268B76830084A23D /* IntExtension.swift in Sources */,
 				D07124EA264C2B23007DA5F8 /* DiveDataProtocol.swift in Sources */,
 				D07124DF264ADBDF007DA5F8 /* JSONParserProtocol.swift in Sources */,
 				D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */,
