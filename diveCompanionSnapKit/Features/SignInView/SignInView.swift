@@ -5,7 +5,6 @@
 //  Created by Mikołaj Linczewski on 26/05/2021.
 //
 
-//UiPickerView
 //adapter
 
 //ikonka do hasla
@@ -63,18 +62,20 @@ class SignInView: UIView {
         $0.keyboardType = .emailAddress
     }
     
-    private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
-        let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-        
-        $0.attributedPlaceholder = placeholder
-        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
-        $0.autocorrectionType = .no
-        $0.autocapitalizationType = .none
-        $0.isSecureTextEntry = true
-        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 10.0
-    }
+//    private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
+//        let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+//
+//        $0.attributedPlaceholder = placeholder
+//        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
+//        $0.autocorrectionType = .no
+//        $0.autocapitalizationType = .none
+//        $0.isSecureTextEntry = true
+//        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+//        $0.backgroundColor = .white
+//        $0.layer.cornerRadius = 10.0
+//    }
+    
+    private lazy var passwordTextField = PasswordField()
     
     private lazy var signInButton = UIButton().then {
         $0.titleLabel?.font = UIFont(name: Constants.fontName, size: 20)

@@ -44,6 +44,8 @@
 		D08FD9E9268B276A0084A23D /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9E8268B276A0084A23D /* UserDetailsView.swift */; };
 		D08FD9EB268B27780084A23D /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9EA268B27780084A23D /* UserDetailsViewController.swift */; };
 		D08FD9ED268B28990084A23D /* ViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9EC268B28990084A23D /* ViewsProtocol.swift */; };
+		D08FD9EF268B6B760084A23D /* PasswordFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */; };
+		D08FD9F1268B75670084A23D /* BoolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9F0268B75670084A23D /* BoolExtension.swift */; };
 		D09C78F0268A167600AF765F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78EF268A167600AF765F /* Gender.swift */; };
 		D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78F1268A30AA00AF765F /* CustomEnum.swift */; };
 		D0A5C7D12684AEEC0088344A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A5C7D02684AEEC0088344A /* Animations.swift */; };
@@ -94,6 +96,8 @@
 		D08FD9E8268B276A0084A23D /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		D08FD9EA268B27780084A23D /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		D08FD9EC268B28990084A23D /* ViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsProtocol.swift; sourceTree = "<group>"; };
+		D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldWithIcon.swift; sourceTree = "<group>"; };
+		D08FD9F0268B75670084A23D /* BoolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtension.swift; sourceTree = "<group>"; };
 		D09C78EF268A167600AF765F /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		D09C78F1268A30AA00AF765F /* CustomEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEnum.swift; sourceTree = "<group>"; };
 		D0A5C7D02684AEEC0088344A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				D06DD968265EAFE600C2DE76 /* UserData.swift */,
 				D06DD96A265EB0A600C2DE76 /* AlertController.swift */,
 				D0A603CA26600FC9005699E1 /* CustomTextField.swift */,
+				D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				D07124E7264C19C5007DA5F8 /* DateExtension.swift */,
+				D08FD9F0268B75670084A23D /* BoolExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				D06DD969265EAFE600C2DE76 /* UserData.swift in Sources */,
 				D07124E1264BEECE007DA5F8 /* DataFetcher.swift in Sources */,
 				D06DD96B265EB0A600C2DE76 /* AlertController.swift in Sources */,
+				D08FD9EF268B6B760084A23D /* PasswordFieldWithIcon.swift in Sources */,
 				D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */,
 				D02560082641B2030001598B /* PlusPlus.swift in Sources */,
 				D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */,
@@ -426,6 +433,7 @@
 				D04F920A265EA8D6001F7267 /* SignUpView.swift in Sources */,
 				D07124E5264C1178007DA5F8 /* CustomViewController.swift in Sources */,
 				D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */,
+				D08FD9F1268B75670084A23D /* BoolExtension.swift in Sources */,
 				D08FD9ED268B28990084A23D /* ViewsProtocol.swift in Sources */,
 				D01E905D265151CD001296F4 /* UserSettings.swift in Sources */,
 				D06DD96F265FA51A00C2DE76 /* SignInViewController.swift in Sources */,
