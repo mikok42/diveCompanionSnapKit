@@ -14,6 +14,7 @@ protocol FirebaseServiceProtocol {
     var user: Userdata? { get }
     var hasSignedIn: Bool { get }
     
+    func getCurrentUser() -> Userdata?
     func signUpUser(user: Userdata, completion: @escaping (()-> Void))
     func signInUser(email: String, password: String, completion: @escaping (()-> Void))
 }
@@ -23,7 +24,6 @@ class FirebaseService: FirebaseServiceProtocol {
     private let firestore = Firestore.firestore()
     private let userRef = Firestore.firestore().collection("users")
     private let auth = Auth.auth()
-    
     
     weak var alertDelegate: AlertDelegate?
     
@@ -77,7 +77,7 @@ class FirebaseService: FirebaseServiceProtocol {
                 
                 #warning("popraw ten --> ! ")
                 self.userRef.document(result!.user.uid).getDocument { (document, error) in
-                    guard let document = document else { return }
+                    guard let document = document else { print(":()()\n\n\n\n") ; return }
                     
                     do {
                         let user: Userdata = try document.decoded()
@@ -90,6 +90,10 @@ class FirebaseService: FirebaseServiceProtocol {
                 completion()
             }
         }
+    }
+    
+    func getCurrentUser() -> Userdata? {
+        return user
     }
     
     func logout() {

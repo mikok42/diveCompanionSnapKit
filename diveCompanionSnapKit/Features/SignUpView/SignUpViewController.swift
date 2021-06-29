@@ -5,11 +5,6 @@
 //  Created by Mikołaj Linczewski on 26/05/2021.
 //
 
-//Auth.auth().currentUser
-//Auth.auth().signOut()
-//Userserwis 55 - 74 => ładnie
-//offset textfielda
-
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore

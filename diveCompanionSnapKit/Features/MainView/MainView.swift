@@ -12,6 +12,7 @@ protocol ButtonDelegate: AnyObject {
     func prevButtonPressed()
     func nextButtonPressed()
     func homeButtonPressed()
+    func userDetailsButtonPressed()
 }
 
 //protocol ButtonDataSource: AnyObject {
@@ -109,6 +110,18 @@ class MainView: UIView {
         $0.alpha = 0
     }
     
+    private lazy var detailsButton = UIButton().then {
+        $0.setTitle("🤿", for: .normal)
+        $0.backgroundColor = #colorLiteral(red: 0.9946475625, green: 0.8637236357, blue: 0.7171586156, alpha: 1)
+        $0.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        $0.layer.cornerRadius = 0.5 * $0.bounds.size.width
+        $0.alpha = 0
+        
+        $0.addTarget(self, action: #selector(userDetailsButtonPressed(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonLetGoOutside(_:)), for: .touchUpOutside)
+        $0.addTarget(self, action: #selector(buttonTouched), for: .touchDown)
+    }
+    
     private lazy var leftSwipe = UISwipeGestureRecognizer().then {
         $0.direction = .right
         $0.addTarget(self, action: #selector(swipeLeft(_:)))
@@ -139,7 +152,7 @@ class MainView: UIView {
     }
     
     func fadeIn(duration: Double, _ completion: (() -> Void)? = nil) {
-        super.fadeIn(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView], duration: duration) {
+        super.fadeIn(viewsToAnimate: [buttonStackView, prevButton, nextButton, homeButton, textView, siteTitleLabel, siteLocationLabel, siteImageView, detailsButton], duration: duration) {
             completion?()
         }
     }
@@ -174,6 +187,10 @@ class MainView: UIView {
         buttonDelegate?.homeButtonPressed()
     }
     
+    @objc private func userDetailsButtonPressed(_ sender: UIButton) {
+        buttonDelegate?.userDetailsButtonPressed()
+    }
+    
     @objc private func swipeRight(_ sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             buttonDelegate?.nextButtonPressed()
@@ -194,7 +211,7 @@ class MainView: UIView {
     
     // MARK: Private funcs
     private func addSubviews() {
-        [buttonStackView, textView, siteTitleLabel, siteLocationLabel, siteImageView].forEach {
+        [buttonStackView, textView, siteTitleLabel, siteLocationLabel, siteImageView, detailsButton].forEach {
             addSubview($0)
         }
     }
@@ -212,6 +229,7 @@ class MainView: UIView {
         prevButtonSetup()
         nextButtonSetup()
         homeButtonSetup()
+        userDetailsButtonSetup()
     }
     
     private func textViewSetup() {
@@ -257,7 +275,7 @@ class MainView: UIView {
 
     private func imageSetup() {
         siteImageView.snp.makeConstraints {
-            $0.top.equalTo(snp.top)
+            $0.top.equalTo(detailsButton.snp.bottom)
             $0.leading.equalTo(snp.leading)
             $0.trailing.equalTo(snp.trailing)
             $0.height.equalTo(snp.height).dividedBy(3)
@@ -275,6 +293,15 @@ class MainView: UIView {
         siteLocationLabel.snp.makeConstraints {
             $0.leading.equalTo(siteTitleLabel.snp.leading)
             $0.top.equalTo(siteTitleLabel.snp.bottom).inset(-Constants.labelsDistance)
+        }
+    }
+    
+    private func userDetailsButtonSetup() {
+        detailsButton.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).offset(-15)
+            $0.trailing.equalTo(snp.trailing)
+            $0.height.equalTo(35)
+            $0.width.equalTo(35)
         }
     }
 }

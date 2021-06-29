@@ -44,6 +44,10 @@ final class ViewController: CustomViewController<MainView> {
 }
 
 extension ViewController: ButtonDelegate {
+    func userDetailsButtonPressed() {
+        coordinator?.goToUserDetailsView()
+    }
+    
     
     func nextButtonPressed() {
         guard !diveSites.isEmpty else { print("list empty"); return }

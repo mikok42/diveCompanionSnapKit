@@ -41,4 +41,10 @@ class MainCoordinator: Coordinator {
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
+    
+    func goToUserDetailsView() {
+        let viewController = UserDetailsViewController(serviceProvider: serviceProvider)
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
 }
