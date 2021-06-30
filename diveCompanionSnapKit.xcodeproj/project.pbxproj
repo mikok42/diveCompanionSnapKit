@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38BA8EE3F6AE11D2F289BFAD /* Pods_diveCompanionSnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */; };
+		D0037DC8268B86EA004CFF0B /* IndexExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0037DC7268B86EA004CFF0B /* IndexExtensions.swift */; };
 		D01512E3263BF73500BAC208 /* CountryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01512E2263BF73500BAC208 /* CountryTableCell.swift */; };
 		D01AD57F2631902200577F91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD57E2631902200577F91 /* AppDelegate.swift */; };
 		D01AD5832631902200577F91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01AD5822631902200577F91 /* ViewController.swift */; };
@@ -48,7 +49,6 @@
 		D08FD9F1268B75670084A23D /* BoolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9F0268B75670084A23D /* BoolExtension.swift */; };
 		D08FD9F3268B76830084A23D /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FD9F2268B76830084A23D /* IntExtension.swift */; };
 		D09C78F0268A167600AF765F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78EF268A167600AF765F /* Gender.swift */; };
-		D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C78F1268A30AA00AF765F /* CustomEnum.swift */; };
 		D0A5C7D12684AEEC0088344A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A5C7D02684AEEC0088344A /* Animations.swift */; };
 		D0A603C926600314005699E1 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603C826600314005699E1 /* FirebaseService.swift */; };
 		D0A603CB26600FC9005699E1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603CA26600FC9005699E1 /* CustomTextField.swift */; };
@@ -58,6 +58,7 @@
 /* Begin PBXFileReference section */
 		2D5775A40425C695A67F2B59 /* Pods-diveCompanionSnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveCompanionSnapKit.debug.xcconfig"; path = "Target Support Files/Pods-diveCompanionSnapKit/Pods-diveCompanionSnapKit.debug.xcconfig"; sourceTree = "<group>"; };
 		4C056D74B8B400263252C707 /* Pods-diveCompanionSnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveCompanionSnapKit.release.xcconfig"; path = "Target Support Files/Pods-diveCompanionSnapKit/Pods-diveCompanionSnapKit.release.xcconfig"; sourceTree = "<group>"; };
+		D0037DC7268B86EA004CFF0B /* IndexExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexExtensions.swift; sourceTree = "<group>"; };
 		D01512E2263BF73500BAC208 /* CountryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableCell.swift; sourceTree = "<group>"; };
 		D01AD57B2631902200577F91 /* diveCompanionSnapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diveCompanionSnapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01AD57E2631902200577F91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		D08FD9F0268B75670084A23D /* BoolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtension.swift; sourceTree = "<group>"; };
 		D08FD9F2268B76830084A23D /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		D09C78EF268A167600AF765F /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
-		D09C78F1268A30AA00AF765F /* CustomEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEnum.swift; sourceTree = "<group>"; };
 		D0A5C7D02684AEEC0088344A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		D0A603C826600314005699E1 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		D0A603CA26600FC9005699E1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -236,7 +236,6 @@
 				D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */,
 				D0A603C826600314005699E1 /* FirebaseService.swift */,
 				D01E905C265151CD001296F4 /* UserSettings.swift */,
-				D09C78F1268A30AA00AF765F /* CustomEnum.swift */,
 				D01AD5A02631C81900577F91 /* JsonParser.swift */,
 				D07124DE264ADBDF007DA5F8 /* JSONParserProtocol.swift */,
 				D01AD59F2631C81900577F91 /* DataParserError.swift */,
@@ -268,6 +267,7 @@
 			children = (
 				D07124E7264C19C5007DA5F8 /* DateExtension.swift */,
 				D08FD9F0268B75670084A23D /* BoolExtension.swift */,
+				D0037DC7268B86EA004CFF0B /* IndexExtensions.swift */,
 				D08FD9F2268B76830084A23D /* IntExtension.swift */,
 			);
 			path = Extensions;
@@ -413,6 +413,7 @@
 				D08FD9E9268B276A0084A23D /* UserDetailsView.swift in Sources */,
 				D07756EF26398D7C002D7195 /* Then.swift in Sources */,
 				D08FD9EB268B27780084A23D /* UserDetailsViewController.swift in Sources */,
+				D0037DC8268B86EA004CFF0B /* IndexExtensions.swift in Sources */,
 				D07124D9264AB89B007DA5F8 /* Coordinator.swift in Sources */,
 				D06DD967265EAEA700C2DE76 /* SignUpViewController.swift in Sources */,
 				D07124E3264BEEDF007DA5F8 /* DataFetcherProtocol.swift in Sources */,
@@ -422,7 +423,6 @@
 				D07124E1264BEECE007DA5F8 /* DataFetcher.swift in Sources */,
 				D06DD96B265EB0A600C2DE76 /* AlertController.swift in Sources */,
 				D08FD9EF268B6B760084A23D /* PasswordFieldWithIcon.swift in Sources */,
-				D09C78F2268A30AA00AF765F /* CustomEnum.swift in Sources */,
 				D02560082641B2030001598B /* PlusPlus.swift in Sources */,
 				D05D9197263AD2CD00AA8BE0 /* TableViewController.swift in Sources */,
 				D04F920C265EA8E8001F7267 /* SignInView.swift in Sources */,

@@ -14,32 +14,40 @@ protocol DetailsViewButtonsDelegate: AnyObject {
 }
 
 class UserDetailsView: UIView, ProperView {
-    public var userName: String?
-    public var userEmail: String?
-    public var userGender: String?
-    public var userSkillLevel: String?
+    public var userName: String? {
+        get { userNameLabel.text }
+        set { userNameLabel.text = newValue ?? "diver" }
+    }
+    public var userEmail: String? {
+        get { userEmailLabel.text }
+        set { userEmailLabel.text = "email: \(newValue ??  "email")"}
+    }
+    public var userGender: String? {
+        get { userGenderLabel.text }
+        set { userGenderLabel.text = "gender: \(newValue ?? "gender")" }
+    }
+    public var userSkillLevel: String? {
+        get { userSkillLevelLabel.text }
+        set { userSkillLevelLabel.text = "skill level: \(newValue ?? "skills")" }
+    }
     
     weak var buttonDelegate: DetailsViewButtonsDelegate?
     
     private lazy var userNameLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName + Constants.boldFontMod, size: 21)
         $0.textAlignment = .center
-        $0.text = userName ?? "diver"
     }
     
     private lazy var userEmailLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 20)
-        $0.text = "email: \(userEmail ??  "email")"
     }
     
     private lazy var userSkillLevelLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 20)
-        $0.text = "skill level: \(userSkillLevel ?? "skills")"
     }
     
     private lazy var userGenderLabel = UILabel().then {
         $0.font = UIFont(name: Constants.fontName, size: 20)
-        $0.text = "gender: \(userGender ?? "gender")"
     }
     
     private lazy var homeButton = UIButton().then {

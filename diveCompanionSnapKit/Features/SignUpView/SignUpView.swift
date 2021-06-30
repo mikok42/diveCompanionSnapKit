@@ -161,8 +161,10 @@ class SignUpView: UIView {
         genderTextField.resignFirstResponder()
     }
     
-    public func showGenderPicker() {
-        genderPickerView.isHidden = false
+    public func showGenderPicker(textField: UITextField) {
+        if textField == self.genderTextField {
+            genderPickerView.isHidden = false
+        }
     }
     
     public func reloadGenderPickerData() {

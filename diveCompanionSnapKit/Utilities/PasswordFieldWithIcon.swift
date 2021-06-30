@@ -11,7 +11,7 @@ import SnapKit
 
 class PasswordField: UIView, ProperView {
     let textFieldColor: UIColor
-    let cornerRadius: CGFloat
+    var cornerRadius: CGFloat
     let textFieldInsets: UIEdgeInsets
     let fontSize: CGFloat
     
@@ -36,16 +36,17 @@ class PasswordField: UIView, ProperView {
     private lazy var showPasswordButton = UIButton().then {
         $0.setTitle(passwordIcons[showPasssword.Int()], for: .normal)
         $0.addTarget(self, action: #selector(showPasswordButtonPressed(_:)), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont(name: Constants.fontName, size: fontSize)
     }
     
     init(fontSize: CGFloat = 15, color: UIColor = .white, cornerRadius: CGFloat = 10.0, insets: UIEdgeInsets = UIEdgeInsets(top: 1, left: 5, bottom: 1, right: 5)) {
-        self.cornerRadius = cornerRadius
         self.textFieldColor = color
         self.textFieldInsets = insets
         self.fontSize = fontSize
         self.showPasssword = false
+        self.cornerRadius = cornerRadius
         
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        super.init(frame: .infinite)
         self.addSubviews()
         self.setupSubviews()
     }
@@ -65,7 +66,7 @@ class PasswordField: UIView, ProperView {
     
     @objc func showPasswordButtonPressed(_ sender: UIButton) {
         showPasssword = !showPasssword
-        passwordTextField.isSecureTextEntry = showPasssword
+        passwordTextField.isSecureTextEntry = !showPasssword
         showPasswordButton.setTitle(passwordIcons[showPasssword.Int()], for: .normal)
     }
     

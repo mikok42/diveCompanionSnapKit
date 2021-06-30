@@ -4,6 +4,7 @@
 //
 //  Created by Mikołaj Linczewski on 29/06/2021.
 //
+//ViewModel
 
 import Foundation
 import FirebaseFirestore
@@ -26,6 +27,7 @@ class UserDetailsViewController: CustomViewController<UserDetailsView> {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         populateView()
     }
     
@@ -41,6 +43,4 @@ extension UserDetailsViewController: DetailsViewButtonsDelegate {
     func homeButtonPressed() {
         navigationController?.popViewController(animated: false)
     }
-    
-    
 }

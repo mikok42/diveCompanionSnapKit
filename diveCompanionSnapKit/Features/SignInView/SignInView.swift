@@ -4,16 +4,13 @@
 //
 //  Created by Mikołaj Linczewski on 26/05/2021.
 //
-
-//adapter
-
-//ikonka do hasla
-
+//ViewModel
 //collection i scroll view
 
 //profil użytkownika
 //zdjęcir użytkownika
 //uiimagepickercontroller
+//adapter
 
 import Foundation
 import SnapKit

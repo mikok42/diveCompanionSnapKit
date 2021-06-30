@@ -15,7 +15,7 @@ protocol FirebaseServiceProtocol {
     var hasSignedIn: Bool { get }
     
     func getCurrentUser() -> Userdata?
-    func signUpUser(user: Userdata, completion: @escaping (()-> Void))
+    func signUpUser(user: Userdata, success: @escaping (()-> Void), failure: @escaping ((_ error: Error) -> Void))
     func signInUser(email: String, password: String, completion: @escaping (()-> Void))
 }
 
@@ -33,18 +33,18 @@ class FirebaseService: FirebaseServiceProtocol {
         user != nil
     }
     
-    func signUpUser(user: Userdata, completion: @escaping (()-> Void)) {
+    func signUpUser(user: Userdata, success: @escaping (()-> Void), failure: @escaping ((_ error: Error) -> Void)) {
         guard let email = user.email else { alertDelegate?.showAlert(title: "error", message: "email"); return }
         guard let password = user.password else { alertDelegate?.showAlert(title: "password", message: "email"); return }
         auth.createUser(withEmail: email, password: password) { [weak self] (result, error) in
             guard let self = self else { return }
-            if let error = error { completion(); return }
+            if let error = error { failure(error); return }
             
             self.user = user
             do {
                 self.userRef.document(result!.user.uid).setData(try user.asDictionary()) { error in
                     guard error == nil else { self.alertDelegate?.showAlert(title: "password", message: "save"); return }
-                    completion()
+                    success()
                 }
             } catch {
                 print(error)
@@ -78,7 +78,7 @@ class FirebaseService: FirebaseServiceProtocol {
                 #warning("popraw ten --> ! ")
                 self.userRef.document(result!.user.uid).getDocument { (document, error) in
                     guard let document = document else { print(":()()\n\n\n\n") ; return }
-                    
+                    print("Mikołaj: \(error?.localizedDescription)")
                     do {
                         let user: Userdata = try document.decoded()
                         self.user = user
@@ -92,9 +92,7 @@ class FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func getCurrentUser() -> Userdata? {
-        return user
-    }
+    func getCurrentUser() -> Userdata? { user }
     
     func logout() {
         try? Auth.auth().signOut()

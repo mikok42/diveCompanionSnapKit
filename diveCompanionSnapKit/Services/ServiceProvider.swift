@@ -9,7 +9,7 @@ import Foundation
 
 protocol ServiceProviderProtocol {
     var jsonParser: JSONParserProtocol { get }
-    var dataFetcher: DataFetcherProtocol {get set}
+    var dataFetcher: DataFetcherProtocol { get set }
     var firebaseService: FirebaseServiceProtocol { get set }
 }
 

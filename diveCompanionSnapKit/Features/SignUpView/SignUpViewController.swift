@@ -12,11 +12,10 @@ import FirebaseFirestore
 class SignUpViewController: CustomViewController<SignUpView> {
     weak var coordinator: MainCoordinator?
     private var serviceProvider: ServiceProviderProtocol
-    private var genders: [Gender]
+    private let genders = Gender.allCases
     
     init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
-        self.genders = Gender.allCases
         super.init()
     }
     
@@ -49,7 +48,10 @@ extension SignUpViewController: SignUpDelegate {
         let userdata = Userdata(username: username, email: email, password: password, skillLevel: skillLevel, gender: gender)
         serviceProvider.firebaseService.signUpUser(user: userdata) {
             self.coordinator?.goToMainView()
+        } failure: { error in
+            self.showAlert(title: "error", message: error.localizedDescription)
         }
+
     }
 }
 
@@ -70,12 +72,12 @@ extension SignUpViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Gender.allCases.count
+        return genders.count
     }
 }
 
 extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        customView.showGenderPicker()
+        customView.showGenderPicker(textField: textField)
     }
 }

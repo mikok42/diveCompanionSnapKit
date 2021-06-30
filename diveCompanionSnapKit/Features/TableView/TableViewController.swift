@@ -65,12 +65,6 @@ extension TableViewController: UITableViewDelegate {
     }
 }
 
-extension Collection {
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
-}
-    
 extension TableViewController: TableViewButtonsDelegate {
     func logOutPressed() {
         coordinator?.goToSignInView()
