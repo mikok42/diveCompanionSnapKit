@@ -8,8 +8,12 @@
 import Foundation
 import Combine
 
-class CombineDataService {
-    public static func getData<T: Decodable>(url: String) -> AnyPublisher<[T], Error>? {
+public protocol DataDownloaderProtocol {
+    func getData<T: Decodable>(url: String) -> AnyPublisher<[T], Error>?
+}
+
+class CombineDataService: DataDownloaderProtocol {
+    func getData<T: Decodable>(url: String) -> AnyPublisher<[T], Error>? {
         guard let url = URL(string: url) else { return nil}
         return URLSession.shared.dataTaskPublisher(for: url)
             .map { $0.data }

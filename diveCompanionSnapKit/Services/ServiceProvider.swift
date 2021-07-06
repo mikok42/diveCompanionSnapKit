@@ -9,18 +9,18 @@ import Foundation
 
 protocol ServiceProviderProtocol {
     var jsonParser: JSONParserProtocol { get }
-    var dataFetcher: DataFetcherProtocol { get set }
+    var dataFetcher: DataDownloaderProtocol { get set }
     var firebaseService: FirebaseServiceProtocol { get set }
 }
 
 class ServiceProvider: ServiceProviderProtocol {
     var jsonParser: JSONParserProtocol
-    var dataFetcher: DataFetcherProtocol
+    var dataFetcher: DataDownloaderProtocol
     var firebaseService: FirebaseServiceProtocol
     
     init() {
         self.jsonParser = JSONParser()
-        self.dataFetcher = DataFetcher(jsonParser: jsonParser)
+        self.dataFetcher = CombineDataService()
         self.firebaseService = FirebaseService()
     }
 }

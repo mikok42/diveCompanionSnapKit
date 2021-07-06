@@ -12,9 +12,7 @@ import Combine
 final class ViewController: CustomViewController<MainView> {
     
     var countryIndex: Int? 
-    private var diveSites: [DiveSite] = [] {
-        didSet { assignElements() }
-    }
+    private var diveSites: [DiveSite] = [] { didSet { assignElements() } }
     private var siteArrayIterator = 0
     private var serviceProvider: ServiceProviderProtocol
     private var siteSubscribers: AnyCancellable?
@@ -34,22 +32,21 @@ final class ViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.buttonDelegate = self
-        serviceProvider.dataFetcher.viewDelegate = self
         getSites(url: url)
         customView.fadeIn(duration: 0.5)
-        
-//        print(serviceProvider.userSettings.username)
     }
-    
-    private func downloadSite(url: String) {
-        serviceProvider.dataFetcher.fetchData(url: url)
-    }
-    
+
     private func getSites(url: String) {
-        siteSubscribers = CombineDataService.getData(url: url)?.sink(receiveCompletion: { _ in
-            
+        siteSubscribers = serviceProvider.dataFetcher.getData(url: url)?.sink(
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("alles in ordnung")
+                case .failure(let error):
+                    self.showAlert(title: "error", message: error.localizedDescription)
+                }
         }, receiveValue: { diveSites in
-            self.diveSites = diveSites
+                self.diveSites = diveSites
         })
     }
 

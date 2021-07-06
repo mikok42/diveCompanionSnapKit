@@ -40,17 +40,19 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     }
     
     func fetchCountryData() {
-        countrySubscribers = CombineDataService.getData(url: url)?
+        countrySubscribers = serviceProvider.dataFetcher.getData(url: url)?
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        print("alles in ordnung")
+                    case .failure(let error):
+                        self.showAlert(title: "error", message: error.localizedDescription)
+                    }
+                },
                 receiveValue: { countries in
                     self.countries = countries
         })
-    }
-    
-    fileprivate func getCountryData() {
-        serviceProvider.dataFetcher.fetchData(fileName: url)
-        countries = serviceProvider.dataFetcher.parsedCountryData
     }
 }
 
