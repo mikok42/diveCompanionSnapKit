@@ -8,17 +8,22 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class TableViewController: CustomViewController<CountryTableViewContainer> {
     private var serviceProvider: ServiceProviderProtocol
-    let url: String = " "
-    var countries: [Country] = []
+    private var countrySubscribers: AnyCancellable?
+    
+    let url: String = "https://raw.githubusercontent.com/mikok42/diverCompanion/master/diverCompanion/diverCompanion/Countries.json"
+    var countries: [Country] = [] {
+        didSet { customView.countryTable.reloadData() }
+    }
     weak var coordinator: MainCoordinator?
     
     init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
         super.init()
-        getCountryData()
+        fetchCountryData()
         
         customView.countryTable.delegate = self
         customView.countryTable.dataSource = self
@@ -32,6 +37,15 @@ class TableViewController: CustomViewController<CountryTableViewContainer> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func fetchCountryData() {
+        countrySubscribers = CombineDataService.getData(url: url)?
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { countries in
+                    self.countries = countries
+        })
     }
     
     fileprivate func getCountryData() {
@@ -69,6 +83,5 @@ extension TableViewController: TableViewButtonsDelegate {
     func logOutPressed() {
         coordinator?.goToSignInView()
     }
-    
     
 }

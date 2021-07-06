@@ -7,13 +7,17 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class ViewController: CustomViewController<MainView> {
     
     var countryIndex: Int? 
-    private var diveSites: [DiveSite] = []
+    private var diveSites: [DiveSite] = [] {
+        didSet { assignElements() }
+    }
     private var siteArrayIterator = 0
     private var serviceProvider: ServiceProviderProtocol
+    private var siteSubscribers: AnyCancellable?
     weak var coordinator: MainCoordinator?
     
     var url: String = " "
@@ -31,7 +35,7 @@ final class ViewController: CustomViewController<MainView> {
         super.viewDidLoad()
         customView.buttonDelegate = self
         serviceProvider.dataFetcher.viewDelegate = self
-        downloadSite(url: url)
+        getSites(url: url)
         customView.fadeIn(duration: 0.5)
         
 //        print(serviceProvider.userSettings.username)
@@ -39,6 +43,14 @@ final class ViewController: CustomViewController<MainView> {
     
     private func downloadSite(url: String) {
         serviceProvider.dataFetcher.fetchData(url: url)
+    }
+    
+    private func getSites(url: String) {
+        siteSubscribers = CombineDataService.getData(url: url)?.sink(receiveCompletion: { _ in
+            
+        }, receiveValue: { diveSites in
+            self.diveSites = diveSites
+        })
     }
 
 }
@@ -51,7 +63,7 @@ extension ViewController: ButtonDelegate {
     
     func nextButtonPressed() {
         guard !diveSites.isEmpty else { print("list empty"); return }
-        if siteArrayIterator  < diveSites.count - 1 {
+        if siteArrayIterator  < diveSites.count - 1  {
             siteArrayIterator++
         } else {
             siteArrayIterator = 0
@@ -60,6 +72,7 @@ extension ViewController: ButtonDelegate {
         customView.fadeOut(duration: 0.4)
         customView.fadeIn(duration: 0.4)
     }
+    
     func prevButtonPressed() {
         guard !diveSites.isEmpty else { print("list empty"); return }
         if siteArrayIterator > 0 {

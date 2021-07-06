@@ -27,6 +27,7 @@
 		D05D919E263AE15000AA8BE0 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D919D263AE15000AA8BE0 /* Storage.swift */; };
 		D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D919F263AF8CA00AA8BE0 /* Country.swift */; };
 		D05D91A2263AFA2D00AA8BE0 /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D05D91A1263AFA2D00AA8BE0 /* Countries.json */; };
+		D067E601269447B7006BAE61 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067E600269447B7006BAE61 /* Result.swift */; };
 		D06DD967265EAEA700C2DE76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DD966265EAEA700C2DE76 /* SignUpViewController.swift */; };
 		D06DD969265EAFE600C2DE76 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DD968265EAFE600C2DE76 /* UserData.swift */; };
 		D06DD96B265EB0A600C2DE76 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DD96A265EB0A600C2DE76 /* AlertController.swift */; };
@@ -52,6 +53,7 @@
 		D0A5C7D12684AEEC0088344A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A5C7D02684AEEC0088344A /* Animations.swift */; };
 		D0A603C926600314005699E1 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603C826600314005699E1 /* FirebaseService.swift */; };
 		D0A603CB26600FC9005699E1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A603CA26600FC9005699E1 /* CustomTextField.swift */; };
+		D0C120672694468F000B74BC /* CombineDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C120662694468F000B74BC /* CombineDataFetcher.swift */; };
 		D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CD4FBB2633452800CFF221 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,7 @@
 		D05D919D263AE15000AA8BE0 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D05D919F263AF8CA00AA8BE0 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		D05D91A1263AFA2D00AA8BE0 /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
+		D067E600269447B7006BAE61 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D06DD966265EAEA700C2DE76 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D06DD968265EAFE600C2DE76 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		D06DD96A265EB0A600C2DE76 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		D0A5C7D02684AEEC0088344A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		D0A603C826600314005699E1 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		D0A603CA26600FC9005699E1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		D0C120662694468F000B74BC /* CombineDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineDataFetcher.swift; sourceTree = "<group>"; };
 		D0CD4FBB2633452800CFF221 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D7BE029696FE182C48AAA372 /* Pods_diveCompanionSnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveCompanionSnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +218,7 @@
 				D06DD96A265EB0A600C2DE76 /* AlertController.swift */,
 				D0A603CA26600FC9005699E1 /* CustomTextField.swift */,
 				D08FD9EE268B6B760084A23D /* PasswordFieldWithIcon.swift */,
+				D067E600269447B7006BAE61 /* Result.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				D05D919D263AE15000AA8BE0 /* Storage.swift */,
 				D07124DC264AD163007DA5F8 /* ServiceProvider.swift */,
 				D07124E0264BEECE007DA5F8 /* DataFetcher.swift */,
+				D0C120662694468F000B74BC /* CombineDataFetcher.swift */,
 				D07124E2264BEEDF007DA5F8 /* DataFetcherProtocol.swift */,
 				D0A603C826600314005699E1 /* FirebaseService.swift */,
 				D01E905C265151CD001296F4 /* UserSettings.swift */,
@@ -408,6 +414,7 @@
 				D08FD9F3268B76830084A23D /* IntExtension.swift in Sources */,
 				D07124EA264C2B23007DA5F8 /* DiveDataProtocol.swift in Sources */,
 				D07124DF264ADBDF007DA5F8 /* JSONParserProtocol.swift in Sources */,
+				D0C120672694468F000B74BC /* CombineDataFetcher.swift in Sources */,
 				D05D91A0263AF8CA00AA8BE0 /* Country.swift in Sources */,
 				D01AD5832631902200577F91 /* ViewController.swift in Sources */,
 				D08FD9E9268B276A0084A23D /* UserDetailsView.swift in Sources */,
@@ -445,6 +452,7 @@
 				D01AD5A42631C81900577F91 /* diveSite.swift in Sources */,
 				D05D9199263AD31500AA8BE0 /* TableView.swift in Sources */,
 				D0CD4FBC2633452800CFF221 /* Constants.swift in Sources */,
+				D067E601269447B7006BAE61 /* Result.swift in Sources */,
 				D05D919E263AE15000AA8BE0 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,6 +37,7 @@ class DataFetcher: DataFetcherProtocol {
             }
         }
     }
+
         //        let data = fetchedData //else { print("no data fetched 1 ") ; return }
         //        guard let tempDiveSites: [DiveSite] = try jsonParser.parse(jsonData: data) else { print("no data fetched 2 ") ; return }
         //        parsedData = tempDiveSites
