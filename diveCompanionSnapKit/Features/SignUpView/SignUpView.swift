@@ -87,20 +87,7 @@ class SignUpView: UIView {
         $0.text = nil
     }
     
-    private lazy var passwordTextField = TextFieldWithPadding(top: 1, left: 5, bottom: 1, right: 5).then {
-        let placeholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-        
-        $0.attributedPlaceholder = placeholder
-        $0.font = UIFont(name: Constants.fontName + Constants.lightFontMod, size: 15)
-        $0.autocorrectionType = .no
-        $0.autocapitalizationType = .none
-        $0.isSecureTextEntry = true
-        $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 10.0
-        $0.text = nil
-        $0.text = nil
-    }
+    private lazy var passwordTextField = PasswordField()
     
     private lazy var genderPickerView = UIPickerView().then {
         $0.isHidden = true

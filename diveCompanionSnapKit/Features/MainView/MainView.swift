@@ -144,8 +144,9 @@ class MainView: UIView {
         siteImageView.kf.setImage(
             with: URL(string: fullURL),
             placeholder: UIImage(named: "salemWreck"),
-            options: [.transition(.fade(1))]
+            options: [.transition(.flipFromLeft(0.5))]
         )
+        siteImageView.startAnimating()
         siteTitleLabel.text = siteTitle
         siteLocationLabel.text = siteLocation
         textView.text = siteDescription

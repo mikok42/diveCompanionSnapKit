@@ -85,5 +85,4 @@ extension TableViewController: TableViewButtonsDelegate {
     func logOutPressed() {
         coordinator?.goToSignInView()
     }
-    
 }

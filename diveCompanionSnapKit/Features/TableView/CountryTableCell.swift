@@ -26,14 +26,19 @@ class CountryCell: UITableViewCell, Identifiable {
     
     func configureCell(country: Country) {
         let fullURL = Constants.imageRepo  + country.imageName + ".jpg?raw=true"
+        print("Mikołaj: \(fullURL)")
         countryImageView.kf.setImage(
             with: URL(string: fullURL),
             placeholder: UIImage(named: "salemWreck"),
-            options: [.transition(.fade(1))]
+            options: [.transition(.flipFromLeft(1))]
         )
+        
         countryNameLabel.text = country.name
         backgroundColor = Constants.backgroundColour
         selectedBackgroundView = selectionColour
+        
+        guard let logoURL: URL = URL(string: Constants.imageRepo + "doge.png?raw=true") else { return }
+        countryImageView.addLogoOverLay(url: logoURL)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
